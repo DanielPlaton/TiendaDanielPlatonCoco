@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+
+<div>
+
+		<form class="login-form" method="post"
+			th:action="@{/menuPrincipal}" th:object="${usuario}" th:object="${listaProductos}" >
+			<h1>Login</h1>
+			<div class="form-floating">
+				<input type="nombre" name="nombre" id="nombre" class="form-control"
+					placeholder="Introduce un email" /> 
+					<label for="floatingInput">Email </label>
+			</div>
+			<div class="form-floating">
+				<input type="password" name="clave" id="clave" class="form-control"
+					placeholder="Introducce una clave" /> <label
+					for="floatingPassword">Password</label>
+			</div>
+			 <button class="w-100 btn btn-lg btn-primary" type="submit" value="Entrar">Entrar</button>
+			
+		</form>
+	</div>
+</body>
+</html>

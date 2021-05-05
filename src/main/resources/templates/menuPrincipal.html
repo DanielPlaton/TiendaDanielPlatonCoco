@@ -1,0 +1,38 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Menu Principal</title>
+</head>
+<body>
+	<p>
+		hola <span th:text="${usuario.nombre}"></span>
+	</p>
+
+	<h1 align="center">Menu principal</h1>
+
+	<table>
+
+		<tr>
+			<th>Id</th>
+			<th>nombre</th>
+			<th>apellido 1</th>
+			<th>apellido 2</th>
+
+		</tr>
+		<tr th:each="producto: ${listaProductos}">
+			<td th:text="${producto.id}"></td>
+			<td th:text="${producto.categorias}"></td>
+			<td th:text="${producto.nombre}"></td>
+			<td th:text="${producto.descripcion}"></td>
+
+		</tr>
+	</table>
+
+	<br></br>
+</body>
+</html>
