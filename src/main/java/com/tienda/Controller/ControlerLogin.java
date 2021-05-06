@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tienda.modelo.Productos;
@@ -17,12 +18,21 @@ import javassist.expr.NewArray;
 
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/tienda")
 public class ControlerLogin {
 
 	
 	@GetMapping("/login")
 	public String getLoginPrincipal(Model model) {
+		
+		model.addAttribute("usuario", new Usuarios());
+		
+		return "login";
+	}
+	
+	@PostMapping("/menuPrincipal")
+	public String postLoginPrincipal(Model model,@ModelAttribute Usuarios u) {
+		
 		Productos p = new Productos();
 		p.setId(1);
 		p.setCategorias(1);
@@ -35,16 +45,9 @@ public class ControlerLogin {
 		p.setFecha_baja(null);
 		ArrayList<Productos> list = new ArrayList<>();
 		list.add(p);
-		
-		model.addAttribute("usuario", new Usuarios());
-		
 		model.addAttribute("listaProductos", list);
-		return "login";
-	}
-	
-	@GetMapping("/menuprincipal")
-	public String postLoginPrincipal(Model model,@ModelAttribute Usuarios u) {
 		model.addAttribute("usuario", u);
+		
 		return "menuPrincipal";
 	}
 	

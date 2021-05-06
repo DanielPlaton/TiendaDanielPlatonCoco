@@ -7,8 +7,9 @@
 <body>
 
 <div>
+
 		<form class="login-form" method="post"
-			th:action="@{/tienda/menuPrincipal}" th:object="${usuario}" >
+			th:action="@{/menuPrincipal}" th:object="${usuario}" th:object="${listaProductos}" >
 			<h1>Login</h1>
 			<div class="form-floating">
 				<input type="nombre" name="nombre" id="nombre" class="form-control"
