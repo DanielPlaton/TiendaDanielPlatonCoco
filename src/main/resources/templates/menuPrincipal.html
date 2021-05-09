@@ -5,34 +5,60 @@
 <html>
 <head>
 
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author"
+	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.82.0">
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/5.0/examples/album/">
+<link th:href="@{menuPrincipal.css}" rel="stylesheet">
+
 <title>Menu Principal</title>
 </head>
 <body>
-	<p>
-		hola <span th:text="${usuario.nombre}"></span>
-	</p>
+	<div th:insert="@{header.html}"></div>
+	<div class="album py-5 bg-light">
+		<div class="container">
 
-	<h1 align="center">Menu principal</h1>
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				<tr class="card-text" th:each="producto: ${listaProductos}">
 
-	<table>
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						<div class="col">
+							<div class="card shadow-sm">
+								<svg class="bd-placeholder-img card-img-top" width="100%"
+									height="225" xmlns="http://www.w3.org/2000/svg" role="img"
+									aria-label="Placeholder: Thumbnail"
+									preserveAspectRatio="xMidYMid slice" focusable="false">
+							<title>imagentitulo</title><rect width="100%" height="100%"
+										fill="#55595c" />
+							<text x="50%" y="50%" fill="#eceeef" dy=".3em">imagen</text></svg>
+								<div class="card-body">
+									
+									<p class="card-text"> <td th:text="${producto.nombre}"></td></p>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button"
+												class="btn btn-sm btn-outline-secondary">View</button>
+											<form th:action="@{/tienda/login}">
+												<button type="submit" method="get"
+													class="btn btn-sm btn-outline-secondary">Edit</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</tr>
+			</div>
+		</div>
+	</div>
 
-		<tr>
-			<th>Id</th>
-			<th>categoria</th>
-			<th>nombre</th>
-			<th>descripcion</th>
 
-		</tr>
-		<tr th:each="producto: ${listaProductos}">
-			<td th:text="${producto.id}"></td>
-			<td th:text="${producto.categorias}"></td>
-			<td th:text="${producto.nombre}"></td>
-			<td th:text="${producto.descripcion}"></td>
 
-		</tr>
-	</table>
 
-	<br></br>
 </body>
 </html>

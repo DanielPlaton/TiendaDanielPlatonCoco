@@ -2,15 +2,19 @@ package com.tienda.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
+
 public class Usuarios implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@Column(name = "id_rol", nullable = true)
 	private int roles;
@@ -53,7 +57,7 @@ public class Usuarios implements java.io.Serializable {
 		this.dni = dni;
 	}
 
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
@@ -61,7 +65,7 @@ public class Usuarios implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public int getRoles() {
+	public long getRoles() {
 		return this.roles;
 	}
 

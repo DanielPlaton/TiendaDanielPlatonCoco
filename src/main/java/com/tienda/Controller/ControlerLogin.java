@@ -36,21 +36,6 @@ public class ControlerLogin {
 	@PostMapping("/menuPrincipal")
 	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u) {
 
-//		Productos p = new Productos();
-//		p.setId(1);
-//		p.setCategorias(1);
-//		p.setNombre("");
-//		p.setDescripcion("");
-//		p.setPrecio(10);
-//		p.setStock(2);
-//		p.setImpuesto(20);
-//		p.setFecha_alta(null);
-//		p.setFecha_baja(null);
-//
-//		ArrayList<Productos> list = new ArrayList<>();
-//		list.add(p);
-//		model.addAttribute("listaProductos", list);
-
 		Usuarios uexiste = loginServices.buscarUsuarioEmail(u.getEmail());
 
 		if (uexiste != null) {
@@ -70,6 +55,8 @@ public class ControlerLogin {
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model) {
 		model.addAttribute("usuario", new Usuarios());
+		Iterable<Productos> listaProductos = productosServices.buscarProductos();
+		model.addAttribute("listaProductos", listaProductos);
 		return "menuPrincipal";
 	}
 
