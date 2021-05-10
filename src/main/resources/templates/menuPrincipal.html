@@ -21,7 +21,7 @@
 
 
 	<div th:insert="@{header.html}"></div>
-	
+
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -38,16 +38,37 @@
 										fill="#55595c" />
 							<text x="50%" y="50%" fill="#eceeef" dy=".3em">imagen</text></svg>
 								<div class="card-body">
+
+									<p class="card-text">
+										<td th:text="${producto.nombre +' nombre '}"></td>
+									</p>
+									<p class="card-text">
+										<td th:text="${producto.precio +' precio '}"></td>
+									</p>
+									<p class="card-text">
+										<td th:text="${producto.categorias +' categoria '}"></td> 
+										
+										<!-- th:if="${producto.categoria} == ${listaCategorias.id}" 
 									
-									<p class="card-text"> <td th:text="${producto.nombre}"></td></p>
+										<select  th:field="*{producto.categorias}">
+										<option th:each="categoria :${listaCategorias} "
+										th:value="${categoria.id}"
+										th:utext="${categoria.nombre}"/>
+										</select>-->
+									<p></p>
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
+
 											<button type="button"
-												class="btn btn-sm btn-outline-secondary">añadir al carrito</button>
-											
-												<button type="submit" method="get"
-													class="btn btn-sm btn-outline-secondary">Edit</button>
-											
+												class="btn btn-sm btn-outline-secondary">añadir al
+												carrito</button>
+
+											<button type="button">
+												<a
+													th:href="@{/tienda/productos/verproducto/}+${producto.id}">ver</a>
+											</button>
+
+
 										</div>
 									</div>
 								</div>

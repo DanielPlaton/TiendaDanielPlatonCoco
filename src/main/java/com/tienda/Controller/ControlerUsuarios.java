@@ -34,6 +34,15 @@ public class ControlerUsuarios {
 
 		return "usuarios/altausuario";
 	}
+	
+	@GetMapping("/new/usuarionuevo")
+	public String nuevoUsuario(Model model) {
+		Usuarios u = new Usuarios();
+		u.setRoles(3);
+		model.addAttribute("usuario", u);
+
+		return "usuarios/altausuario";
+	}
 
 	@PostMapping("/new/altausuario/submit")
 	public String postAltaUsuarios(Model model, Usuarios usuario) {

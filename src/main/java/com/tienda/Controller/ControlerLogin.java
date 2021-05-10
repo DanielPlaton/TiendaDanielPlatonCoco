@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tienda.modelo.Categoria;
 import com.tienda.modelo.Productos;
 import com.tienda.modelo.Usuarios;
+import com.tienda.services.CategoriasServices;
 import com.tienda.services.LoginServices;
 import com.tienda.services.ProductoServices;
 
@@ -27,6 +29,8 @@ public class ControlerLogin {
 	public LoginServices loginServices;
 	@Autowired
 	public ProductoServices productosServices;
+	@Autowired
+	public CategoriasServices categoriasServices;
 
 	@GetMapping("/login")
 	public String getLoginPrincipal(Model model) {
@@ -41,11 +45,15 @@ public class ControlerLogin {
 		model.addAttribute("usuario", new Usuarios());
 		
 		Iterable<Productos> listaProductos = productosServices.buscarProductos();
+		Iterable<Categoria> listaCategorias = categoriasServices.buscarCategorias();
 		model.addAttribute("listaProductos", listaProductos);
+		model.addAttribute("listaCategorias", listaCategorias);
 		
-		if(carrito.equals(null) ) {
+		boolean existe = productosServices.existeCarrito(carrito);
+		if( existe == false) {
 			carrito = new ArrayList<Productos>();
 		}
+	
 	
 		return "menuPrincipal";
 	}
@@ -57,11 +65,10 @@ public class ControlerLogin {
 		Usuarios uexiste = loginServices.buscarUsuarioEmail(u.getEmail());
 
 		if (uexiste != null) {
-			Iterable<Productos> listaProductos = productosServices.buscarProductos();
 			session.setAttribute("usuario", uexiste);
 			model.addAttribute("usuario", uexiste);
-			model.addAttribute("listaProductos", listaProductos);
-			return "menuPrincipal";
+			
+			return "redirect:/tienda/menuPrincipal";
 
 		} else {
 
@@ -73,6 +80,7 @@ public class ControlerLogin {
 	@GetMapping("/logout")
 	public String getStringLogout(Model model,HttpSession session) {
 		session.invalidate();
+		carrito = null;
 		return "redirect:/tienda/menuPrincipal";
 	}
 

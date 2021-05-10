@@ -18,10 +18,17 @@ public class LoginServices {
 
 	}
 
-	public Usuarios buscarUsuarioEmail(String email) {
-		Usuarios u = loginRepository.findByEmail(email);
+	public Usuarios buscarUsuarioEmailAndClave(String email, String clave) {
+		Usuarios u = loginRepository.finByEmailAndClave(email, clave);
+		
 		return u;
 
 	}
 
+	public Usuarios buscarUsuarioEmail(String email) {
+		Usuarios u = loginRepository.findByEmail(email);
+		
+		return u;
+
+	}
 }

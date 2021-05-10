@@ -13,24 +13,27 @@
 
 </head>
 <body>
-	<form class="form-horizontal" method="post" th:action=" ${usuario.id !=0} ? @{/tienda/usuarios/edit/altausuario/submit} : @{/tienda/usuarios/new/altausuario/submit}"
-		th:object="${usuario}" >
+	<form class="form-horizontal" method="post"
+		th:action=" ${usuario.id !=0} ? @{/tienda/usuarios/edit/altausuario/submit} : @{/tienda/usuarios/new/altausuario/submit}"
+		th:object="${usuario}">
 		<fieldset>
 			<!-- Text input-->
 
 			<input id="id" name="id" type="hidden" placeholder=""
 				class="form-control input-md" required="" th:field="*{id}">
 
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="idrol">Id Rol</label>
-				<div class="col-md-4">
-					<input id="roles" name="roles" type="text"
-						placeholder="Introduce el rol" class="form-control input-md"
-						required="" th:field="*{roles}">
 
+			<div th:style="${usuario.id ==3} ? 'display: none' : '' ">
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="idrol">Id Rol</label>
+					<div class="col-md-4">
+						<input id="roles" name="roles" type="text"
+							placeholder="Introduce el rol" class="form-control input-md"
+							required="" th:field="*{roles}">
+
+					</div>
 				</div>
 			</div>
-
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="email">Email</label>
@@ -144,8 +147,9 @@
 			</div>
 
 		</fieldset>
-		
-		 <button class="w-100 btn btn-lg btn-primary" type="submit" value="Entrar">Entrar</button>
+
+		<button class="w-100 btn btn-lg btn-primary" type="submit"
+			value="Entrar">Entrar</button>
 	</form>
 </body>
 </html>
