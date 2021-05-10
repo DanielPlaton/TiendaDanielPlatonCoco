@@ -22,6 +22,7 @@ import javassist.expr.NewArray;
 @Controller
 @RequestMapping("/tienda")
 public class ControlerLogin {
+	Iterable<Productos> carrito;
 	@Autowired
 	public LoginServices loginServices;
 	@Autowired
@@ -38,8 +39,14 @@ public class ControlerLogin {
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model) {
 		model.addAttribute("usuario", new Usuarios());
+		
 		Iterable<Productos> listaProductos = productosServices.buscarProductos();
 		model.addAttribute("listaProductos", listaProductos);
+		
+		if(carrito.equals(null) ) {
+			carrito = new ArrayList<Productos>();
+		}
+	
 		return "menuPrincipal";
 	}
 	
@@ -51,8 +58,8 @@ public class ControlerLogin {
 
 		if (uexiste != null) {
 			Iterable<Productos> listaProductos = productosServices.buscarProductos();
-			session.setAttribute("usuario", u.getNombre());
-			model.addAttribute("usuario", uexiste.getNombre());
+			session.setAttribute("usuario", uexiste);
+			model.addAttribute("usuario", uexiste);
 			model.addAttribute("listaProductos", listaProductos);
 			return "menuPrincipal";
 
