@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
-<title>Lista Usuario</title>
+<title>Lista Productos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -72,26 +72,20 @@ body {
 							<table class="table project-table table-centered table-nowrap">
 								<thead>
 									<tr>
-										<th scope="col">Rol</th>
-										<th scope="col">Email</th>
 										<th scope="col">Nombre</th>
-										<th scope="col">Apellido 1</th>
-										<th scope="col">Apellido 2</th>
+										<th scope="col">Descripcion</th>
+										<th scope="col">Precio</th>
+										<th scope="col">Stock</th>
+										<th scope="col">Impuesto</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="usuario: ${listaUsuarios}">
-										<th th:text="${usuario.roles}" ></th>
-										<td th:text="${usuario.email}"></td>
-										<td th:text="${usuario.nombre}"></td>
-										<td th:text="${usuario.apellido1}">
-											<td th:text="${usuario.apellido2}">
+									<tr th:each="producto: ${listaProductos}">
+										<th th:text="${producto.nombre}" ></th>
+									
 										<td>
 											<div class="action">
-												<a  th:href="@{/tienda/usuarios/edit/altausuario/}+${usuario.id}" class="text-success mr-4" data-toggle="tooltip"
-													data-placement="top" title="" data-original-title="Edit">
-													<i class="fa fa-pencil h5 m-0"></i>
-												</a>
+										
 												 <a th:href="@{/tienda/usuarios/del/altausuario/}+${usuario.id}" class="text-danger" data-toggle="tooltip"
 													data-placement="top" title="" data-original-title="delete">
 													<i class="fa fa-remove h5 m-0"></i>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tienda.modelo.Productos;
@@ -35,5 +36,13 @@ public class ControlerProductos {
 		model.addAttribute("listaProducto", listaProductos);
 		return "/productos/verproducto";
 	}
+	
+	@PostMapping("/putProducto/{id}")
+	public String getStringPutProducto(@PathVariable("id")long id,Model model) {
+		Productos producto = productoServices.obtenerProducto(id);
+		model.addAttribute("producto", producto);
+		return "/tienda/menuPrincipal";
+	}
+
 
 }

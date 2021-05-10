@@ -19,7 +19,7 @@ public class LoginServices {
 	}
 
 	public Usuarios buscarUsuarioEmailAndClave(String email, String clave) {
-		Usuarios u = loginRepository.finByEmailAndClave(email, clave);
+		Usuarios u = loginRepository.findByEmailAndClave(email, clave);
 		
 		return u;
 

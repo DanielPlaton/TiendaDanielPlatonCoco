@@ -1,5 +1,7 @@
 package com.tienda.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,8 @@ public class CategoriasServices {
 	@Autowired
 	private CategoriasRepository categoriasRepository;
 	
-	public Iterable<Categoria> buscarCategorias(){
-		Iterable<Categoria> listaCategorias = categoriasRepository.findAll();
+	public ArrayList<Categoria> buscarCategorias(){
+		ArrayList<Categoria> listaCategorias = (ArrayList<Categoria>) categoriasRepository.findAll();
 		return listaCategorias;		
 	}
 }

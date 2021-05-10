@@ -1,5 +1,7 @@
 package com.tienda.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,8 @@ public class UsuarioServices {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	public Iterable<Usuarios> buscarUsuarios(){
-		Iterable<Usuarios> listaUsuarios = usuarioRepository.findAll();
+	public ArrayList<Usuarios> buscarUsuarios(){
+		ArrayList<Usuarios> listaUsuarios = (ArrayList<Usuarios>) usuarioRepository.findAll();
 		return listaUsuarios;		
 	}
 	

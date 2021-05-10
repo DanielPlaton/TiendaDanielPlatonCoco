@@ -1,5 +1,7 @@
 package com.tienda.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,8 @@ public class ProductoServices {
 	@Autowired
 	private ProductosRepository productosRepository;
 
-	public Iterable<Productos> buscarProductos() {
-		Iterable<Productos> listaProductos = productosRepository.findAll();
+	public ArrayList<Productos> buscarProductos() {
+		ArrayList<Productos> listaProductos = (ArrayList<Productos>) productosRepository.findAll();
 		return listaProductos;
 
 	}

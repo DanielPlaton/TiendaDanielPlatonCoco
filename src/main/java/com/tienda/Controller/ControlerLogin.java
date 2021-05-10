@@ -2,9 +2,11 @@ package com.tienda.Controller;
 
 import java.util.ArrayList;
 
+import javax.persistence.metamodel.SetAttribute;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,8 @@ import javassist.expr.NewArray;
 @Controller
 @RequestMapping("/tienda")
 public class ControlerLogin {
-	Iterable<Productos> carrito;
+
+	ArrayList<Productos> carrito;
 	@Autowired
 	public LoginServices loginServices;
 	@Autowired
@@ -41,33 +44,38 @@ public class ControlerLogin {
 	}
 
 	@GetMapping("/menuPrincipal")
-	public String getStringLoginPrincipal(Model model) {
+	public String getStringLoginPrincipal(Model model, HttpSession session) {
 		model.addAttribute("usuario", new Usuarios());
-		
-		Iterable<Productos> listaProductos = productosServices.buscarProductos();
-		Iterable<Categoria> listaCategorias = categoriasServices.buscarCategorias();
+
+		ArrayList<Productos> listaProductos = productosServices.buscarProductos();
+		ArrayList<Categoria> listaCategorias = categoriasServices.buscarCategorias();
 		model.addAttribute("listaProductos", listaProductos);
 		model.addAttribute("listaCategorias", listaCategorias);
-		
 		boolean existe = productosServices.existeCarrito(carrito);
-		if( existe == false) {
+		if (existe == true) {
 			carrito = new ArrayList<Productos>();
+
 		}
-	
-	
+		Productos p = (Productos) model.getAttribute("producto");
+		if (session.getAttribute("usuario") != null && p!= null ) {
+			
+			carrito.add(p);
+		}
+
 		return "menuPrincipal";
 	}
-	
-	
+
 	@PostMapping("/menuPrincipal")
-	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u,HttpSession session) {
-		
-		Usuarios uexiste = loginServices.buscarUsuarioEmail(u.getEmail());
+	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u, HttpSession session) {
+
+		Usuarios uexiste = loginServices.buscarUsuarioEmailAndClave(u.getEmail(), u.getClave());
 
 		if (uexiste != null) {
+
 			session.setAttribute("usuario", uexiste);
+			session.setAttribute("carrito", carrito);
 			model.addAttribute("usuario", uexiste);
-			
+
 			return "redirect:/tienda/menuPrincipal";
 
 		} else {
@@ -76,16 +84,12 @@ public class ControlerLogin {
 		}
 
 	}
-	
+
 	@GetMapping("/logout")
-	public String getStringLogout(Model model,HttpSession session) {
+	public String getStringLogout(Model model, HttpSession session) {
 		session.invalidate();
 		carrito = null;
 		return "redirect:/tienda/menuPrincipal";
 	}
-
-
-
-
 
 }
