@@ -20,11 +20,14 @@ public class UsuarioServices {
 		return listaUsuarios;		
 	}
 	
-	  public Usuarios obtenerUsuario(int id) {
+	  public Usuarios obtenerUsuario(long id) {
 	        return usuarioRepository.findById(id);
 	    }
 	  
 	  public void guardarUsuario(Usuarios usuario) {
 	        usuarioRepository.save(usuario);
+	    }
+	  public void deleteUsuario(long id) {
+	    	usuarioRepository.deleteById(id);
 	    }
 }

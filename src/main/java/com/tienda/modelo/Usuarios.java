@@ -15,9 +15,9 @@ public class Usuarios implements java.io.Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	@Column(name = "id_rol", nullable = true)
-	private int roles;
+	private long roles;
 	@Column(name = "email", nullable = true)
 	private String email;
 	@Column(name = "clave", nullable = true)
@@ -61,7 +61,7 @@ public class Usuarios implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -69,7 +69,7 @@ public class Usuarios implements java.io.Serializable {
 		return this.roles;
 	}
 
-	public void setRoles(int roles) {
+	public void setRoles(long roles) {
 		this.roles = roles;
 	}
 

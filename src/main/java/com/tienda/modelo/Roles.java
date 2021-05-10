@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Roles implements java.io.Serializable {
 	@Id
 	@Column(name = "id")
-	private int id;
+	private long id;
 	@Column(name = "rol", nullable = true)
 	private String rol;
 
@@ -27,11 +27,11 @@ public class Roles implements java.io.Serializable {
 		this.rol = rol;
 	}
 
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

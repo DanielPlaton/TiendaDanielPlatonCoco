@@ -8,6 +8,6 @@ import com.tienda.modelo.Productos;
 
 public interface ProductosRepository extends CrudRepository<Productos, Long> {
 
-	Productos findById(int id);
+	Productos findById(long id);
 	
 }

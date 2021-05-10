@@ -9,24 +9,41 @@
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	rel="stylesheet">
+<link th:href="@{usuarios.css}" rel="stylesheet">
+<style type="text/css">
+body {
+	background: #f3f3f3;
+	margin-top: 20px;
+	color: #616f80;
+}
 
+.card {
+	border: none;
+	margin-bottom: 24px;
+	-webkit-box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+	box-shadow: 0 0 13px 0 rgba(236, 236, 241, .44);
+}
 
+.avatar-xs {
+	height: 2.3rem;
+	width: 2.3rem;
+}
+</style>
 </head>
 <body>
-	<form class="form-horizontal" method="post" th:action=" ${usuario.id !=0} ? @{/tienda/usuarios/edit/altausuario/submit} : @{/tienda/usuarios/new/altausuario/submit}"
-		th:object="${usuario}" >
+	<form class="form-horizontal"  th:action="@{/edit/altausuario/submit}" th:object="${usuario}" method="post" >
 		<fieldset>
 			<!-- Text input-->
 
 			<input id="id" name="id" type="hidden" placeholder=""
 				class="form-control input-md" required="" th:field="*{id}">
-
+				
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="idrol">Id Rol</label>
 				<div class="col-md-4">
 					<input id="roles" name="roles" type="text"
 						placeholder="Introduce el rol" class="form-control input-md"
-						required="" th:field="*{roles}">
+						required=""th:field="*{roles}">
 
 				</div>
 			</div>
@@ -46,9 +63,9 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="clave">Clave</label>
 				<div class="col-md-4">
-					<input id="clave" name="clave" type="text"
+					<input id="clave" name="clave" type="password"
 						placeholder="Introduce clave del usuario"
-						class="form-control input-md" th:field="*{clave}">
+						class="form-control input-md" required="" th:field="*{clave}">
 
 				</div>
 			</div>
@@ -115,8 +132,8 @@
 				<label class="col-md-4 control-label" for="localidad">Localidad</label>
 				<div class="col-md-4">
 					<select id="localidad" name="localidad" class="form-control">
-						<option value="1">zamora</option>
-						<option value="2">salamanca</option>
+						<option value="1">Option one</option>
+						<option value="2">Option two</option>
 					</select>
 				</div>
 			</div>
@@ -126,8 +143,8 @@
 				<label class="col-md-4 control-label" for="provincia">Provincia</label>
 				<div class="col-md-4">
 					<select id="provincia" name="provincia" class="form-control">
-						<option value="1">zamora</option>
-						<option value="2">salamanca</option>
+						<option value="1">Option one</option>
+						<option value="2">Option two</option>
 					</select>
 				</div>
 			</div>
@@ -137,15 +154,12 @@
 				<label class="col-md-4 control-label" for="telefono">Telefono</label>
 				<div class="col-md-4">
 					<input id="telefono" name="telefono" type="text"
-						placeholder="Introduce un telefono" class="form-control input-md"
-						th:field="*{telefono}">
+						placeholder="Introduce un telefono" class="form-control input-md" th:field="*{telefono}">
 
 				</div>
 			</div>
 
 		</fieldset>
-		
-		 <button class="w-100 btn btn-lg btn-primary" type="submit" value="Entrar">Entrar</button>
 	</form>
 </body>
 </html>

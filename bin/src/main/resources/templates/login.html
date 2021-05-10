@@ -1,18 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Login</title>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<link th:href="@{signin.css}" rel="stylesheet">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 </head>
-<body>
+<body class="text-center">
 
 <div>
-
+<main class="form-signin">
 		<form class="login-form" method="post"
-			th:action="@{/menuPrincipal}" th:object="${usuario}" th:object="${listaProductos}" >
+			th:action="@{/tienda/menuPrincipal}" th:object="${usuario}" >
 			<h1>Login</h1>
 			<div class="form-floating">
-				<input type="nombre" name="nombre" id="nombre" class="form-control"
+				<input type="email" name="email" id="email" class="form-control"
 					placeholder="Introduce un email" /> 
 					<label for="floatingInput">Email </label>
 			</div>
@@ -24,6 +46,7 @@
 			 <button class="w-100 btn btn-lg btn-primary" type="submit" value="Entrar">Entrar</button>
 			
 		</form>
+		</main>
 	</div>
 </body>
 </html>

@@ -55,6 +55,7 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="dropdown1"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+
 					<ul class="dropdown-menu" aria-labelledby="dropdown1">
 						<li class="dropdown-item"><a
 							th:href="@{/tienda/usuarios/new/altausuario}">Alta Usuario</a></li>
@@ -73,32 +74,18 @@
 			</div>
 			<div class="text-end">
 
-				<div th:if="${session.usuario== null}">
-					<div>
-						<button class="btn btn-outline-light me-2" type="submit"
-						method="get"><a th:href="@{/tienda/usuarios/new/altausuario}">Registrarse</a></button>
-						<button class="btn btn-outline-light me-2" type="submit"
-						method="get"><a th:href="@{/tienda/login}">Acceder</a></button>
-					</div>
-				</div>
-				
-				<div >
-					<div>
 
-					<p style="color:white" th:text="${session.usuario}">Bienvenido</p>
-						<button class="btn btn-outline-light me-2" type="submit"
-						method="get"><a th:href="@{/tienda/logout}">cerrar Session</a></button>
-					</div>
-				</div>
+
+				<form th:action="@{/tienda/login}" >
+
+					<button class="btn btn-outline-light me-2" type="submit" method="get">
+						Login</button>
+				</form>
+
+
+
 
 			</div>
 		</div>
-		
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script
-		src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		
-	</script>
 </body>
 </html>

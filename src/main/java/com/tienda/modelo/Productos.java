@@ -13,9 +13,9 @@ public class Productos implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id")
-	private int id;
+	private long id;
 	@Column(name = "id_categoria", nullable = true)
-	private int categorias;
+	private long categorias;
 	@Column(name = "nombre", nullable = true)
 	private String nombre;
 	@Column(name = "descripcion", nullable = true)
@@ -52,22 +52,22 @@ public class Productos implements java.io.Serializable {
 	}
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
 
-	public int getCategorias() {
+	public long getCategorias() {
 		return categorias;
 	}
 
 
-	public void setCategorias(int categorias) {
+	public void setCategorias(long categorias) {
 		this.categorias = categorias;
 	}
 

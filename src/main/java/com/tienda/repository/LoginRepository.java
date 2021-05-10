@@ -8,7 +8,7 @@ public interface LoginRepository extends CrudRepository<Usuarios, Long> {
 
 	
 	//necesitamos esto para buscar por id el usuario y que no te de un generico
-	Usuarios findById(int id);
+	Usuarios findById(long id);
 	Usuarios findByEmail(String email);
 	
 }

@@ -2,6 +2,8 @@ package com.tienda.Controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,25 +35,6 @@ public class ControlerLogin {
 		return "login";
 	}
 
-	@PostMapping("/menuPrincipal")
-	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u) {
-
-		Usuarios uexiste = loginServices.buscarUsuarioEmail(u.getEmail());
-
-		if (uexiste != null) {
-			Iterable<Productos> listaProductos = productosServices.buscarProductos();
-
-			model.addAttribute("usuario", uexiste);
-			model.addAttribute("listaProductos", listaProductos);
-			return "menuPrincipal";
-
-		} else {
-		
-			return "login";
-		}
-
-	}
-
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model) {
 		model.addAttribute("usuario", new Usuarios());
@@ -59,5 +42,35 @@ public class ControlerLogin {
 		model.addAttribute("listaProductos", listaProductos);
 		return "menuPrincipal";
 	}
+	
+	
+	@PostMapping("/menuPrincipal")
+	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u,HttpSession session) {
+		
+		Usuarios uexiste = loginServices.buscarUsuarioEmail(u.getEmail());
+
+		if (uexiste != null) {
+			Iterable<Productos> listaProductos = productosServices.buscarProductos();
+			session.setAttribute("usuario", u.getNombre());
+			model.addAttribute("usuario", uexiste.getNombre());
+			model.addAttribute("listaProductos", listaProductos);
+			return "menuPrincipal";
+
+		} else {
+
+			return "login";
+		}
+
+	}
+	
+	@GetMapping("/logout")
+	public String getStringLogout(Model model,HttpSession session) {
+		session.invalidate();
+		return "redirect:/tienda/menuPrincipal";
+	}
+
+
+
+
 
 }
