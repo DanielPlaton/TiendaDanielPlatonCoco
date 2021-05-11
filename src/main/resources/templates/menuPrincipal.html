@@ -50,12 +50,12 @@
 									</p>
 									<p class="card-text">
 
-										<p th:each="categoria : ${listaCategorias} ">
-										<td th:if="${producto.categorias == categorias.id}">
-											<p th:text=" ${categoria.nombre}"/> 
-										</td>
-										</p>
-									<p></p>
+										<div th:each="categoria : ${listaCategorias} ">
+											<div th:if="${producto.categorias == categoria.id}">
+												<td th:text="${categoria.nombre}"></td>
+											</div>										
+										</div>
+								
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
 
