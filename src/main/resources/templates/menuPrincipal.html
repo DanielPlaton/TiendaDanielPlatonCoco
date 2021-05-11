@@ -19,16 +19,15 @@
 </head>
 <body>
 
-
+<form type="submit" method="get" >
 	<div th:insert="@{header.html}"></div>
 	<select th:field="*{listaCategorias}">
 		<div>
 			<option th:each="categoria : ${listaCategorias} "
 				th:value="${categoria.id}" th:text="${categoria.nombre}" />
 	</select>
-
-		<a th:href="@{/tienda/busqueda}"> Aceptar</a>
-
+		<a th:href="@{/tienda/busqueda}">aceptar</a>
+</form>
 	</div>
 	<div class="album py-5 bg-light">
 		<div class="container">

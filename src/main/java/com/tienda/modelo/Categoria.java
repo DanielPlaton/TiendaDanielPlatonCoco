@@ -11,7 +11,7 @@ public class Categoria implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id")
-	private int id;
+	private long id;
 	@Column(name = "nombre", nullable = true)
 	private String nombre;
 	@Column(name = "descripcion", nullable = true)
@@ -20,18 +20,18 @@ public class Categoria implements java.io.Serializable {
 	public Categoria() {
 	}
 
-	public Categoria(int id, String nombre, String descripcion) {
+	public Categoria(long id, String nombre, String descripcion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
