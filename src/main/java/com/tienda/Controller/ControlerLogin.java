@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tienda.modelo.Categoria;
 import com.tienda.modelo.Productos;
@@ -88,6 +89,15 @@ public class ControlerLogin {
 		session.invalidate();
 		carrito = null;
 		return "redirect:/tienda/menuPrincipal";
+	}
+	
+	@GetMapping("/busqueda")
+	public String postBusquedaFiltro(@RequestParam("categoria")long idcategoria,HttpSession session) {
+		ArrayList<Productos> productos = productosServices.obtenerProductosCategorias(idcategoria);
+		session.setAttribute("listaProductos", productos);
+		return "redirect:/tienda/menuPrincipal";
+		
+		
 	}
 
 }

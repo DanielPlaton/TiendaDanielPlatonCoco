@@ -25,6 +25,9 @@ public class ProductoServices {
 		return productosRepository.findById(id);
 	}
 
+	public ArrayList<Productos> obtenerProductosCategorias(long id) {
+		return productosRepository.findByCategorias(id);
+	}
 	public boolean existeCarrito(Iterable<Productos> carrito) {
 		if (carrito == null) {
 			return true;

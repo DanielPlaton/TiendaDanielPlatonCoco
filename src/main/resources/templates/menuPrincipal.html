@@ -22,10 +22,14 @@
 
 	<div th:insert="@{header.html}"></div>
 	<select th:field="*{listaCategorias}">
-		<option th:each="categoria : ${listaCategorias} "
-			th:value="${categoria.id}" th:text="${categoria.nombre}" />
+		<div>
+			<option th:each="categoria : ${listaCategorias} "
+				th:value="${categoria.id}" th:text="${categoria.nombre}" />
 	</select>
-	<button>Aceptar</button>
+
+		<a th:href="@{/tienda/busqueda}"> Aceptar</a>
+
+	</div>
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -49,13 +53,12 @@
 										<td th:text="${producto.precio }"></td>
 									</p>
 									<p class="card-text">
-
-										<div th:each="categoria : ${listaCategorias} ">
-											<div th:if="${producto.categorias == categoria.id}">
-												<td th:text="${categoria.nombre}"></td>
-											</div>										
+									<div th:each="categoria : ${listaCategorias} ">
+										<div th:if="${producto.categorias == categoria.id}">
+											<td th:text="${categoria.nombre}"></td>
 										</div>
-								
+									</div>
+
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
 
