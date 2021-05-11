@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
-<title>Alta Usuario</title>
+<title>Alta Producto</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -14,8 +14,8 @@
 </head>
 <body>
 	<form class="form-horizontal" method="post"
-		th:action=" ${usuario.id !=0} ? @{/tienda/usuarios/edit/altausuario/submit} : @{/tienda/usuarios/new/altausuario/submit}"
-		th:object="${usuario}">
+		th:action=" ${producto.id !=0} ? @{/tienda/productos/edit/altaproductos/submit} : @{/tienda/productos/new/altaproductos/submit}"
+		th:object="${producto}">
 		<fieldset>
 			<!-- Text input-->
 
@@ -23,143 +23,101 @@
 				class="form-control input-md" required="" th:field="*{id}">
 
 
-			<div th:style="${usuario.id ==3} ? 'display: none' : '' ">
+		
 						
 
-				<label class="col-md-4 control-label" for="idrol">Id Rol</label>
+				<label class="col-md-4 control-label" for="idrol">Id Categoria</label>
 				<div class="col-md-4">
 					<div class="form-group">
 
-						<!-- 
-							<form type="submit" method="get">
-							<select th:field="*{listaRoles}">
-								<div>
-									<option th:each="rol : ${listaRoles} " th:value="${rol.id}"
-										th:text="${rol.nombre}" />
-							</select>
-							</form>
-						-->
-						<input id="roles" name="roles" type="text"
-							placeholder="Introduce el rol" class="form-control input-md"
-							required="" th:field="*{roles}">
+						<input id="categorias" name="categorias" type="text"
+							placeholder="Introduce la categoria" class="form-control input-md"
+							required="" th:field="*{categorias}">
 
 					</div>
 
 				</div>
 
 
-			</div>
+		
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="email">Email</label>
+				<label class="col-md-4 control-label" for="nombre">Nombre Producto</label>
 				<div class="col-md-4">
-					<input id="email" name="email" type="text"
-						placeholder="Introduce email del usuario"
-						class="form-control input-md" required="" th:field="*{email}">
+					<input id="nombre" name="nombre" type="text"
+						placeholder="Introduce el nombre del producto"
+						class="form-control input-md" required="" th:field="*{nombre}">
 
 				</div>
 			</div>
 
 			<!-- Password input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="clave">Clave</label>
+				<label class="col-md-4 control-label" for="descripcion">Descripcion</label>
 				<div class="col-md-4">
-					<input id="clave" name="clave" type="text"
-						placeholder="Introduce clave del usuario"
-						class="form-control input-md" th:field="*{clave}">
+					<input id="descripcion" name="descripcion" type="text"
+						placeholder="Introduce la descripcion del producto"
+						class="form-control input-md" th:field="*{descripcion}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="dni">DNI</label>
+				<label class="col-md-4 control-label" for="precio">Precio</label>
 				<div class="col-md-4">
-					<input id="dni" name="dni" type="text"
-						placeholder="Introduce un dni para el usuario"
-						class="form-control input-md" required="" th:field="*{dni}">
+					<input id="precio" name="precio" type="double"
+						placeholder="Introduce un precio"
+						class="form-control input-md" required="" th:field="*{precio}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="nombre">Nombre</label>
+				<label class="col-md-4 control-label" for="stock">Stock</label>
 				<div class="col-md-4">
-					<input id="nombre" name="nombre" type="text"
-						placeholder="Introduce nombre del usuario"
-						class="form-control input-md" th:field="*{nombre}">
+					<input id="stock" name="stock" type="int"
+						placeholder="Introduce un stock del producto"
+						class="form-control input-md" th:field="*{stock}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="apellido1">Primer
-					Apellido</label>
+				<label class="col-md-4 control-label" for="apellido1">Fecha Baja
+					</label>
 				<div class="col-md-4">
-					<input id="apellido1" name="apellido1" type="text"
-						placeholder="Introduce el primer apellido"
-						class="form-control input-md" th:field="*{apellido1}">
+					<input id="fecha_baja" name="fecha_baja" type="Date"
+						placeholder="Introduce la fecha de baja"
+						class="form-control input-md" th:field="*{fecha_baja}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="apellido2">Segundo
-					Apellido</label>
+				<label class="col-md-4 control-label" for="apellido2">Impuesto</label>
 				<div class="col-md-4">
-					<input id="apellido2" name="apellido2" type="text"
-						placeholder="Introduce el segundo apellido"
-						class="form-control input-md" th:field="*{apellido2}">
+					<input id="apellido2" name="apellido2" type="float"
+						placeholder="Introduce el impuesto"
+						class="form-control input-md" th:field="*{impuesto}">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="direccion">Direccion</label>
+				<label class="col-md-4 control-label" for="direccion">Ruta Imagen</label>
 				<div class="col-md-4">
 					<input id="direccion" name="direccion" type="text"
-						placeholder="Introduce una direccion"
-						class="form-control input-md" th:field="*{direccion}">
+						placeholder="Introduce la url de la imagen"
+						class="form-control input-md" th:field="*{imagen}">
 
 				</div>
 			</div>
 
-			<!-- Select Basic -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="localidad">Localidad</label>
-				<div class="col-md-4">
-					<select id="localidad" name="localidad" class="form-control">
-						<option value="1">zamora</option>
-						<option value="2">salamanca</option>
-					</select>
-				</div>
-			</div>
-
-			<!-- Select Basic -->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="provincia">Provincia</label>
-				<div class="col-md-4">
-					<select id="provincia" name="provincia" class="form-control">
-						<option value="1">zamora</option>
-						<option value="2">salamanca</option>
-					</select>
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="telefono">Telefono</label>
-				<div class="col-md-4">
-					<input id="telefono" name="telefono" type="text"
-						placeholder="Introduce un telefono" class="form-control input-md"
-						th:field="*{telefono}">
-
-				</div>
-			</div>
 
 		</fieldset>
 

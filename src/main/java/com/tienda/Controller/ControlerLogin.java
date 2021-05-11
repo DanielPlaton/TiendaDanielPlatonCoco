@@ -29,8 +29,9 @@ import javassist.expr.NewArray;
 @RequestMapping("/tienda")
 public class ControlerLogin {
 
-	ArrayList<Productos> listaProductos = null;
-	ArrayList<Productos> carrito;
+	ArrayList<Productos> listaProductos;
+	ArrayList<Productos> carrito ;
+	
 	@Autowired
 	public LoginServices loginServices;
 	@Autowired
@@ -48,6 +49,7 @@ public class ControlerLogin {
 
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model, HttpSession session) {
+	
 		model.addAttribute("usuario", new Usuarios());
 		
 		listaProductos= (ArrayList<Productos>) session.getAttribute("listaProductos");
@@ -60,8 +62,8 @@ public class ControlerLogin {
 		model.addAttribute("listaProductos", listaProductos);
 		model.addAttribute("listaCategorias", listaCategorias);
 	
-		boolean existe = productosServices.existeCarrito(carrito);
-		if (existe == true) {
+		boolean noexiste = productosServices.existeCarrito(carrito);
+		if (noexiste == true) {
 			carrito = new ArrayList<Productos>();
 			session.setAttribute("carrito", carrito);
 
