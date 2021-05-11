@@ -21,22 +21,25 @@
 
 
 	<div th:insert="@{header.html}"></div>
-
+	<select th:field="*{listaCategorias}">
+		<option th:each="categoria : ${listaCategorias} "
+			th:value="${categoria.id}" th:text="${categoria.nombre}" />
+	</select>
+	<button>Aceptar</button>
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+
 				<tr class="card-text" th:each="producto: ${listaProductos}">
 
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 						<div class="col">
-							<div class="card shadow-sm">
-								<svg class="bd-placeholder-img card-img-top" width="100%"
-									height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-									aria-label="Placeholder: Thumbnail"
-									preserveAspectRatio="xMidYMid slice" focusable="false">
-							<title>imagentitulo</title><rect width="100%" height="100%"
-										fill="#55595c" />
-							<text x="50%" y="50%" fill="#eceeef" dy=".3em">imagen</text></svg>
+							<div class="card shadow-sm" style="width: 400px">
+
+
+								<img th:src="${producto.imagen}"></img>
 								<div class="card-body">
 
 									<p class="card-text">
@@ -46,28 +49,26 @@
 										<td th:text="${producto.precio }"></td>
 									</p>
 									<p class="card-text">
-										<td th:text="${producto.categorias}"></td> 
-										
-										<!-- th:if="${producto.categoria} == ${listaCategorias.id}" 
-									
-										<select  th:field="*{producto.categorias}">
-										<option th:each="categoria :${listaCategorias} "
-										th:value="${categoria.id}"
-										th:utext="${categoria.nombre}"/>
-										</select>-->
+
+										<p th:each="categoria : ${listaCategorias} ">
+										<td th:if="${producto.categorias == categorias.id}">
+											<p th:text=" ${categoria.nombre}"/> 
+										</td>
+										</p>
 									<p></p>
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
 
 											<button type="submit" method="post"
 												class="btn btn-sm btn-outline-secondary">
-												<a th:action="@{/tienda/productos/putProducto/}+${producto.id}">añadir al
-												carrito</a>
-												</button>
+												<a
+													th:href="@{/tienda/productos/putProducto/}+${producto.id}">añadir
+													al carrito</a>
+											</button>
 
 											<button>
 												<a
-													th:href="@{/tienda/productos/productos}">ver</a>
+													th:href="@{/tienda/productos/verproducto/}+${producto.id}">ver</a>
 											</button>
 
 

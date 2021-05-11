@@ -3,6 +3,7 @@ package com.tienda.Controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,12 +38,30 @@ public class ControlerProductos {
 		return "/productos/verproducto";
 	}
 	
-	@PostMapping("/putProducto/{id}")
-	public String getStringPutProducto(@PathVariable("id")long id,Model model) {
+	@GetMapping("/putProducto/{id}")
+	public String getStringPutProducto(@PathVariable("id")long id,Model model,HttpSession session) {
 		Productos producto = productoServices.obtenerProducto(id);
-		model.addAttribute("producto", producto);
-		return "/tienda/menuPrincipal";
+		ArrayList<Productos> carrito = (ArrayList<Productos>) session.getAttribute("carrito");
+		carrito.add(producto);
+		session.setAttribute("carrito", carrito);
+		return "redirect:/tienda/menuPrincipal";
 	}
+	
+	@GetMapping("/carrito")
+	public String listaProductos(HttpSession session) {
+	session.getAttribute("carrito");
+		return "productos/productos";
+		
+		
+	}
+	
+	@GetMapping("/del/productos/{id}")
+	public String borrarUsuario(Model model,@PathVariable("id") long id,HttpSession session) {
+		
+		ArrayList<Productos> carrito = (ArrayList<Productos>) session.getAttribute("carrito");
+		
 
+		return "redirect:/tienda/usuarios/lista";
+	}
 
 }

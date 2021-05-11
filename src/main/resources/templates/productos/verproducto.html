@@ -345,9 +345,8 @@ body {
 			<div class="row">
 				<div class="col-md-5 col-sm-12 col-xs-12">
 					<div class="product-image">
-						<div id="myCarousel-2" class="carousel slide">
-							<img src="https://via.placeholder.com/700x400/FFB6C1/000000"
-								class="img-responsive" alt="" />
+						<div id="myCarousel-2" class="carousel slide" style="width:400px">
+							<img th:src="${producto.imagen}" ></img>
 						</div>
 					</div>
 				</div>
@@ -382,7 +381,7 @@ body {
 					<hr />
 					<div class="row">
 						<div class="col-sm-12 col-md-6 col-lg-6">
-							<a href="javascript:void(0);" class="btn btn-success btn-lg">Add
+							<a th:href="@{/tienda/productos/putProducto/}+${producto.id}" class="btn btn-success btn-lg">Add
 								to cart <span th:text="${producto.precio}"/></a>
 						</div>
 

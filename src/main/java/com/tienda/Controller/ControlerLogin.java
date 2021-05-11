@@ -54,14 +54,13 @@ public class ControlerLogin {
 		boolean existe = productosServices.existeCarrito(carrito);
 		if (existe == true) {
 			carrito = new ArrayList<Productos>();
+			session.setAttribute("carrito", carrito);
 
-		}
-		Productos p = (Productos) model.getAttribute("producto");
-		if (session.getAttribute("usuario") != null && p!= null ) {
+		}else {
 			
-			carrito.add(p);
+			session.getAttribute("carrito");
 		}
-
+		
 		return "menuPrincipal";
 	}
 
@@ -73,7 +72,6 @@ public class ControlerLogin {
 		if (uexiste != null) {
 
 			session.setAttribute("usuario", uexiste);
-			session.setAttribute("carrito", carrito);
 			model.addAttribute("usuario", uexiste);
 
 			return "redirect:/tienda/menuPrincipal";

@@ -30,6 +30,8 @@ public class Productos implements java.io.Serializable {
 	private Timestamp fecha_baja;
 	@Column(name = "impuesto")
 	private float impuesto;
+	@Column(name = "imagen")
+	private String imagen;
 	
 	
 	public Productos() {
@@ -37,8 +39,8 @@ public class Productos implements java.io.Serializable {
 	}
 
 
-	public Productos(int id, int categorias, String nombre, String descripcion, double precio, int stock,
-			Timestamp fecha_alta, Timestamp fecha_baja, float impuesto) {
+	public Productos(long id, long categorias, String nombre, String descripcion, double precio, int stock,
+			Timestamp fecha_alta, Timestamp fecha_baja, float impuesto, String imagen) {
 		super();
 		this.id = id;
 		this.categorias = categorias;
@@ -49,6 +51,7 @@ public class Productos implements java.io.Serializable {
 		this.fecha_alta = fecha_alta;
 		this.fecha_baja = fecha_baja;
 		this.impuesto = impuesto;
+		this.imagen = imagen;
 	}
 
 
@@ -142,12 +145,27 @@ public class Productos implements java.io.Serializable {
 	}
 
 
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Productos [id=" + id + ", categorias=" + categorias + ", nombre=" + nombre + ", descripcion="
 				+ descripcion + ", precio=" + precio + ", stock=" + stock + ", fecha_alta=" + fecha_alta
-				+ ", fecha_baja=" + fecha_baja + ", impuesto=" + impuesto + "]";
+				+ ", fecha_baja=" + fecha_baja + ", impuesto=" + impuesto + ", imagen=" + imagen + "]";
 	}
+
+
+
+	
 
 	
 	
