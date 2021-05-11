@@ -1,5 +1,7 @@
 package com.tienda.Controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tienda.modelo.Roles;
 import com.tienda.modelo.Usuarios;
-
+import com.tienda.services.RolesServices;
 import com.tienda.services.UsuarioServices;
 
 @Controller
@@ -19,6 +22,9 @@ public class ControlerUsuarios {
 
 	@Autowired
 	public UsuarioServices usuarioServices;
+	@Autowired
+	public RolesServices rolesService;
+
 
 	@GetMapping("/lista")
 	public String getListaUsuarios(Model model) {
@@ -30,6 +36,8 @@ public class ControlerUsuarios {
 
 	@GetMapping("/new/altausuario")
 	public String nuevo(Model model) {
+		ArrayList<Roles> listaRoles = rolesService.buscarRoles();
+		model.addAttribute("listaRoles", listaRoles);
 		model.addAttribute("usuario", new Usuarios());
 
 		return "usuarios/altausuario";
@@ -43,12 +51,17 @@ public class ControlerUsuarios {
 
 		return "usuarios/altausuario";
 	}
-
+	
+	
 	@PostMapping("/new/altausuario/submit")
 	public String postAltaUsuarios(Model model, Usuarios usuario) {
 		model.addAttribute("usuario", usuario);
 		usuarioServices.guardarUsuario(usuario);
+		if(usuario.getRoles()!=3) {
 		return "redirect:/tienda/usuarios/lista";
+		}else {
+		return "redirect:/tienda/login";
+		}
 	}
 
 	@GetMapping("/edit/altausuario/{id}")

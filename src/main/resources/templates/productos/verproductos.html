@@ -79,7 +79,7 @@ body {
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="producto: ${session.carrito}" th:object="${session.carrito}">
+									<tr th:each="producto: ${listaProductos}" th:object="${listaProductos}">
 										
 										 <td th:text="${producto.nombre}" ></td>
 										 <td th:text="${producto.descripcion}" ></td>
@@ -89,7 +89,7 @@ body {
 										<td>
 											<div class="action">
 
-												<a th:href="@{/tienda/productos/del/carrito/}+${producto.id}" class="text-danger" data-toggle="tooltip"
+												<a th:href="@{/tienda/productos/del/productos/}+${producto.id}" class="text-danger" data-toggle="tooltip"
 													data-placement="top" title="" data-original-title="delete">
 													<i class="fa fa-remove h5 m-0"></i>
 												</a>

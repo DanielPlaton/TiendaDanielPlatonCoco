@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ import javassist.expr.NewArray;
 @RequestMapping("/tienda")
 public class ControlerLogin {
 
+	ArrayList<Productos> listaProductos = null;
 	ArrayList<Productos> carrito;
 	@Autowired
 	public LoginServices loginServices;
@@ -47,21 +49,27 @@ public class ControlerLogin {
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model, HttpSession session) {
 		model.addAttribute("usuario", new Usuarios());
+		
+		listaProductos= (ArrayList<Productos>) session.getAttribute("listaProductos");
+		if (listaProductos == null) {
+			listaProductos = productosServices.buscarProductos();
 
-		ArrayList<Productos> listaProductos = productosServices.buscarProductos();
+		}
+
 		ArrayList<Categoria> listaCategorias = categoriasServices.buscarCategorias();
 		model.addAttribute("listaProductos", listaProductos);
 		model.addAttribute("listaCategorias", listaCategorias);
+	
 		boolean existe = productosServices.existeCarrito(carrito);
 		if (existe == true) {
 			carrito = new ArrayList<Productos>();
 			session.setAttribute("carrito", carrito);
 
-		}else {
-			
+		} else {
+
 			session.getAttribute("carrito");
 		}
-		
+
 		return "menuPrincipal";
 	}
 
@@ -90,14 +98,20 @@ public class ControlerLogin {
 		carrito = null;
 		return "redirect:/tienda/menuPrincipal";
 	}
-	
-	@GetMapping("/busqueda")
-	public String postBusquedaFiltro(@RequestParam("categoria")long idcategoria,HttpSession session) {
+
+	@GetMapping("/busqueda/{id}")
+	public String postBusquedaFiltro(@PathVariable("id") long idcategoria, HttpSession session) {
 		ArrayList<Productos> productos = productosServices.obtenerProductosCategorias(idcategoria);
 		session.setAttribute("listaProductos", productos);
 		return "redirect:/tienda/menuPrincipal";
-		
-		
+
+	}
+	@GetMapping("/busqueda")
+	public String postBusquedaFiltro( HttpSession session) {
+		ArrayList<Productos> productos = productosServices.buscarProductos();
+		session.setAttribute("listaProductos", productos);
+		return "redirect:/tienda/menuPrincipal";
+
 	}
 
 }

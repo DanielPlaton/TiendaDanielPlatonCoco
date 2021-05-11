@@ -15,20 +15,73 @@
 	href="https://getbootstrap.com/docs/5.0/examples/album/">
 <link th:href="@{menuPrincipal.css}" rel="stylesheet">
 
+ <style>
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+    </style>
 <title>Menu Principal</title>
+<div th:insert="@{header.html}"></div>
+
 </head>
 <body>
-
-<form type="submit" method="get" >
-	<div th:insert="@{header.html}"></div>
-	<select th:field="*{listaCategorias}">
+	<!--  
+	<form type="submit" method="get" >
+	<select th:field="*{listaCategorias}" id="categoria" name="categoria">
 		<div>
 			<option th:each="categoria : ${listaCategorias} "
 				th:value="${categoria.id}" th:text="${categoria.nombre}" />
 	</select>
+	<button class="btn btn-outline-light me-2">
 		<a th:href="@{/tienda/busqueda}">aceptar</a>
+		</button>
 </form>
-	</div>
+-->
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#opciones">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- enlaces -->
+		<div class="collapse navbar-collapse "
+			style="display: flex; flex-direction: column; align-items: center;"
+			id="opciones">
+			<ul class="navbar-nav" >
+				<li style="margin-right: 20px;" class="nav-item" th:each="categoria : ${listaCategorias} "> 
+					<a th:href="@{/tienda/busqueda/}+${categoria.id}"> <label
+						th:text="${categoria.nombre}"></label> </a>
+				</li>
+				<li style="margin-right: 20px;"><a th:href="@{/tienda/busqueda/}"> <label> Todos
+							los productos </label></a></li>
+			</ul>
+		</div>
+		
+					<div>
+			<form class="form-inline mt-2 mt-md-0"  style="height: 50px; line-height: 50px" >
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
+					aria-label="Search">
+				<button	class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+			</form>
+
+		</div>
+		
+	</nav>
+	
+	<div></div>
+
+
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -58,6 +111,7 @@
 										</div>
 									</div>
 
+
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
 
@@ -73,7 +127,6 @@
 													th:href="@{/tienda/productos/verproducto/}+${producto.id}">ver</a>
 											</button>
 
-
 										</div>
 									</div>
 								</div>
@@ -84,9 +137,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
 
 </body>
 </html>

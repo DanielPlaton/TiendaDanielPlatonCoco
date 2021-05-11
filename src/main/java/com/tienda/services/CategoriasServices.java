@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 import com.tienda.modelo.Categoria;
 import com.tienda.repository.CategoriasRepository;
 
-
-
-
 @Service
 public class CategoriasServices {
 
