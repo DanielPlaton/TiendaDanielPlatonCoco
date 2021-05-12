@@ -145,7 +145,7 @@ public class ControlerProductos {
 	}
 	
 	@GetMapping("/pedido")
-	public String realizarProducto(@PathVariable("unico")String metodo, Model model, HttpSession session) {
+	public String realizarProducto(@RequestParam("metodopago")String metodopago, Model model, HttpSession session) {
 		System.out.println("hola");
 		Usuarios u = (Usuarios) session.getAttribute("usuario");
 		if (u != null) {
@@ -155,7 +155,7 @@ public class ControlerProductos {
 				Usuarios usuarioRegistrado = (Usuarios) session.getAttribute("usuario");
 				Pedidos pedidos = new Pedidos();
 				pedidos.setUsuarios(usuarioRegistrado.getId());
-				//pedidos.setMetodoPago(metodo);
+				pedidos.setMetodoPago(metodopago);
 				pedidos.setEstado("pendiente");
 				double total = 0;
 				for (int i = 0; i < carrito.size(); i++) {

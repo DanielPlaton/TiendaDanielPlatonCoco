@@ -120,17 +120,18 @@ body {
 		<!-- end row -->
 	</div>
 	<form th:action="@{/tienda/productos/pedido}" method="get">
+	 <!-- 
 	 <p class="text-center" th:each="pago: ${session.metodosPagos}" th:object="${session.metodosPagos}">
 	<input type="radio" id="unico" name="unico"  th:value="${pago.metodoPago}" required>
 	<label th:text="${pago.metodoPago}"></label>
 	  </p>
-	  <!-- 
-	<select name="unico">
+	 -->
+	<select name="metodopago">
 		<option th:each="pago: ${session.metodosPagos}" th:value="${pago.metodoPago}" th:text="${pago.metodoPago}"> 
 		
 		</option>
 	</select>
-	-->
+	
 
 	
 	 	</form>
