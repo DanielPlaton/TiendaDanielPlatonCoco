@@ -14,7 +14,7 @@
 </head>
 <body>
 	<form class="form-horizontal" method="post"
-		th:action=" ${producto.id !=0} ? @{/tienda/productos/edit/altaproductos/submit} : @{/tienda/productos/new/altaproductos/submit}"
+		th:action=" ${producto.id !=0} ? @{/tienda/productos/edit/productos/submit} : @{/tienda/productos/new/altaproductos/submit}"
 		th:object="${producto}">
 		<fieldset>
 			<!-- Text input-->
@@ -33,13 +33,8 @@
 						<input id="categorias" name="categorias" type="text"
 							placeholder="Introduce la categoria" class="form-control input-md"
 							required="" th:field="*{categorias}">
-
 					</div>
-
-				</div>
-
-
-		
+				</div>	
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="nombre">Nombre Producto</label>
@@ -47,7 +42,6 @@
 					<input id="nombre" name="nombre" type="text"
 						placeholder="Introduce el nombre del producto"
 						class="form-control input-md" required="" th:field="*{nombre}">
-
 				</div>
 			</div>
 
@@ -66,7 +60,7 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="precio">Precio</label>
 				<div class="col-md-4">
-					<input id="precio" name="precio" type="double"
+					<input id="precio" name="precio" type="text"
 						placeholder="Introduce un precio"
 						class="form-control input-md" required="" th:field="*{precio}">
 
@@ -77,14 +71,15 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="stock">Stock</label>
 				<div class="col-md-4">
-					<input id="stock" name="stock" type="int"
+					<input id="stock" name="stock" type="text"
 						placeholder="Introduce un stock del producto"
-						class="form-control input-md" th:field="*{stock}">
+						class="form-control input-md" th:field="*{stock}" required="">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
+			<!--
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="apellido1">Fecha Baja
 					</label>
@@ -95,21 +90,21 @@
 
 				</div>
 			</div>
-
+-->
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="apellido2">Impuesto</label>
+				<label class="col-md-4 control-label" for="impuesto">Impuesto</label>
 				<div class="col-md-4">
-					<input id="apellido2" name="apellido2" type="float"
+					<input id="impuesto" name="impuesto" type="text"
 						placeholder="Introduce el impuesto"
-						class="form-control input-md" th:field="*{impuesto}">
+						class="form-control input-md" th:field="*{impuesto}" required="">
 
 				</div>
 			</div>
 
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="direccion">Ruta Imagen</label>
+				<label class="col-md-4 control-label" for="imagen">Ruta Imagen</label>
 				<div class="col-md-4">
 					<input id="direccion" name="direccion" type="text"
 						placeholder="Introduce la url de la imagen"

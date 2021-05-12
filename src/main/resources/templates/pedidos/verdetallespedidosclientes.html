@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
-<title>Lista Productos</title>
+<title>Lista Pedidos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -31,7 +31,8 @@ body {
 </style>
 </head>
 <body>
-	<div th:insert="@{header.html}"></div>
+<div th:insert="@{header.html}">
+</div>
 	<link
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 		rel="stylesheet">
@@ -71,74 +72,62 @@ body {
 							<table class="table project-table table-centered table-nowrap">
 								<thead>
 									<tr>
-										<th scope="col">Nombre</th>
-										<th scope="col">Descripcion</th>
-										<th scope="col">Precio</th>
-
-										<th scope="col">Impuesto</th>
+										<th scope="col">Producto</th>
+										<th scope="col">Precio unidad</th>
+										<th scope="col">Unidades</th>
+										<th scope="col">Total</th>
+									
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="producto: ${session.carrito}"
-										th:object="${session.carrito}">
+								
+									<tr th:each="detallePedido: ${listaDetallePedidos}">
+									
+									<th th:text="${detallePedido.productos}" ></th>
+									
+										<th th:text="${detallePedido.precioUnidades}" ></th>
+										<th th:text="${detallePedido.unidades}" ></th>
+									
+										<td th:text="${detallePedido.total}"></td>
+									
 
-										<td th:text="${producto.nombre}"></td>
-										<td th:text="${producto.descripcion}"></td>
-										<td th:text="${producto.precio}"></td>
-										<td th:text="${producto.impuesto}"></td>
-
-										<td>
+										
+										<!--
 											<div class="action">
-
-												<a
-													th:href="@{/tienda/productos/del/carrito/}+${producto.id}"
-													class="text-danger" data-toggle="tooltip"
+											
+																					
+													 <a th:href="@{/tienda/pedidos/cancelar/pedidos/}+${pedido.id}" class="text-danger" data-toggle="tooltip"
 													data-placement="top" title="" data-original-title="delete">
 													<i class="fa fa-remove h5 m-0"></i>
 												</a>
-
-
+												
 											</div>
-										</td>
-
+											 -->
+										
 									</tr>
-
 								</tbody>
-
 							</table>
-
-
-
 						</div>
 						<!-- end project-list -->
 
-
+						<div class="pt-3">
+							<ul class="pagination justify-content-end mb-0">
+								<li class="page-item disabled"><a class="page-link"
+									href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
+								<li class="page-item"><a class="page-link" href="#">1</a></li>
+								<li class="page-item active"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">Next</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- end row -->
 	</div>
-	<form th:action="@{/tienda/productos/pedido}" method="get">
-	 <!-- 
-	 <p class="text-center" th:each="pago: ${session.metodosPagos}" th:object="${session.metodosPagos}">
-	<input type="radio" id="unico" name="unico"  th:value="${pago.metodoPago}" required>
-	<label th:text="${pago.metodoPago}"></label>
-	  </p>
-	 -->
-	<select  id="metodopago" name="metodopago" >
-		<option th:each="pago: ${session.metodosPagos}"  th:value="${pago.metodoPago}" th:text="${pago.metodoPago}"> 
-		
-		</option>
-	</select>
-	
 
-	
-	 	</form>
-						
-	<div class=" col-sm-12 col-md-6 col-lg-6 pull-rigth">
-		<a th:href="@{/tienda/productos/pedido}" class="btn btn-success btn-lg">Realizar Pedido </a>
-	</div>
-	
+
 </body>
 </html>

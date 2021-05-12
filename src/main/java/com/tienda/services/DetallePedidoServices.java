@@ -1,5 +1,7 @@
 package com.tienda.services;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +14,26 @@ import com.tienda.repository.PedidosRepository;
 public class DetallePedidoServices {
 
 	@Autowired
-	private DetallePedidosRepository detalePedidosRepository;
+	private DetallePedidosRepository detallePedidosRepository;
 	
-	  public DetallePedido obtenerDetallePedidos() {
-	        return (DetallePedido) detalePedidosRepository.findAll();
+	  public ArrayList<DetallePedido> obtenerDetallePedidos() {
+	        return  (ArrayList<DetallePedido>) detallePedidosRepository.findAll();
 	    }
 	  
+	  
 		public void guardarDetallePedido(DetallePedido detallePedido) {
-			detalePedidosRepository.save(detallePedido);
+			detallePedidosRepository.save(detallePedido);
 			
 		}
+		
+		public  ArrayList<DetallePedido> obtenerDetallePedido(long id) {
+			return detallePedidosRepository.findByPedidos(id);
+			
+		}
+		/*
+		public void guardarDetallesPedidos(ArrayList<DetallePedido> listaDetallePedido) {
+			detallePedidosRepository.saveAll(listaDetallePedido);
+			
+		}
+		*/
 }
