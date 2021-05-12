@@ -113,14 +113,7 @@ public class ControlerProductos {
 		return "redirect:/tienda/menuPrincipal";
 	}
 
-	@GetMapping("/carrito")
-	public String listaProductosCarrito(HttpSession session) {
-		session.getAttribute("carrito");
-		ArrayList<MetodosPago> metodosPagos = metodosPagoServices.buscarMetodosPago();
-		session.setAttribute("metodosPagos", metodosPagos);
-		return "productos/productos";
 
-	}
 
 	@GetMapping("/del/carrito/{id}")
 	public String borrarProductoCarrito(Model model, @PathVariable("id") long id, HttpSession session) {
@@ -142,8 +135,17 @@ public class ControlerProductos {
 		return "redirect:/tienda/productos/carrito";
 	}
 
+	@GetMapping("/carrito")
+	public String listaProductosCarrito(HttpSession session) {
+		session.getAttribute("carrito");
+		ArrayList<MetodosPago> metodosPagos = metodosPagoServices.buscarMetodosPago();
+		session.setAttribute("metodosPagos", metodosPagos);
+		return "productos/productos";
+
+	}
+	
 	@GetMapping("/pedido")
-	public String realizarProducto(@RequestParam("unico") String metodo,Model model, HttpSession session) {
+	public String realizarProducto(@PathVariable("unico")String metodo, Model model, HttpSession session) {
 		System.out.println("hola");
 		Usuarios u = (Usuarios) session.getAttribute("usuario");
 		if (u != null) {
@@ -153,7 +155,7 @@ public class ControlerProductos {
 				Usuarios usuarioRegistrado = (Usuarios) session.getAttribute("usuario");
 				Pedidos pedidos = new Pedidos();
 				pedidos.setUsuarios(usuarioRegistrado.getId());
-				pedidos.setMetodoPago(metodo);
+				//pedidos.setMetodoPago(metodo);
 				pedidos.setEstado("pendiente");
 				double total = 0;
 				for (int i = 0; i < carrito.size(); i++) {
@@ -161,7 +163,9 @@ public class ControlerProductos {
 				}
 				pedidos.setTotal(total);
 				
-				Pedidos pedidoCreado = pedidosServices.guardarPedido(pedidos);
+				return "redirect:/tienda/menuprincipal";
+				
+				//Pedidos pedidoCreado = pedidosServices.guardarPedido(pedidos);
 				/*
 				DetallePedido detallePedido = new DetallePedido();
 				for(int i=0;i<carrito.size();i++) {
@@ -175,7 +179,7 @@ public class ControlerProductos {
 				}
 				*/
 				
-				return "redirect:/tienda/productos/menuprincipal";
+				
 			} else {
 				return "redirect:/tienda/login";
 			}

@@ -119,18 +119,25 @@ body {
 		</div>
 		<!-- end row -->
 	</div>
-	<form type="submit" method="post">
-	<p class="text-center" th:each="pago: ${session.metodosPagos}" th:object="${session.metodosPagos}">
-	<input type="radio" name="unico"  th:value="${pago.metodoPago}" required>
+	<form th:action="@{/tienda/productos/pedido}" method="get">
+	 <p class="text-center" th:each="pago: ${session.metodosPagos}" th:object="${session.metodosPagos}">
+	<input type="radio" id="unico" name="unico"  th:value="${pago.metodoPago}" required>
 	<label th:text="${pago.metodoPago}"></label>
 	  </p>
+	  <!-- 
+	<select name="unico">
+		<option th:each="pago: ${session.metodosPagos}" th:value="${pago.metodoPago}" th:text="${pago.metodoPago}"> 
+		
+		</option>
+	</select>
+	-->
 
 	
-	 
+	 	</form>
 						
 	<div class=" col-sm-12 col-md-6 col-lg-6 pull-rigth">
 		<a th:href="@{/tienda/productos/pedido}" class="btn btn-success btn-lg">Realizar Pedido </a>
 	</div>
-		</form>
+	
 </body>
 </html>
