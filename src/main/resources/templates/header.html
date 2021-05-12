@@ -43,7 +43,8 @@
 <body>
 
 
-	<div class="navbar navbar-expand-md navbar-dark bg-dark mb-4"role="navigation">
+	<div class="navbar navbar-expand-md navbar-dark bg-dark "
+		role="navigation">
 
 		<a class="navbar-brand" th:href="@{/tienda/menuPrincipal}">Tienda</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -51,36 +52,40 @@
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="dropdown1"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown1">
-						<li class="dropdown-item"><a
-							th:href="@{/tienda/usuarios/new/altausuario}">Alta Usuario</a></li>
-						<li class="dropdown-item"><a
-							th:href="@{/tienda/usuarios/lista}">Ver Usuarios</a></li>
-					</ul></li>
-			</ul>
-		</div>
-		<div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="dropdown1"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown1">
-						<li class="dropdown-item"><a
-							th:href="@{/tienda/productos/new/altaproductos}">Alta Producto</a></li>
-						<li class="dropdown-item"><a
-							th:href="@{/tienda/productos/verproductos}">Ver Producto</a></li>
-					</ul></li>
-			</ul>
-		</div>
+		<span th:if="${session.usuario!= null}">
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="dropdown1"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown1">
+							<li class="dropdown-item"><a
+								th:href="@{/tienda/usuarios/new/altausuario}">Alta Usuario</a></li>
+							<li class="dropdown-item"><a
+								th:href="@{/tienda/usuarios/lista}">Ver Usuarios</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="dropdown1"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown1">
+							<li class="dropdown-item"><a
+								th:href="@{/tienda/productos/new/altaproductos}">Alta
+									Producto</a></li>
+							<li class="dropdown-item"><a
+								th:href="@{/tienda/productos/verproductos}">Ver Producto</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</span>
+		<!-- de la condicion -->
 
 
 
-		<div class="text-end">
+		<div class="text-end ">
 
 			<div th:if="${session.usuario== null}">
 				<div>

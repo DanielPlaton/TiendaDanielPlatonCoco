@@ -74,39 +74,63 @@ body {
 										<th scope="col">Nombre</th>
 										<th scope="col">Descripcion</th>
 										<th scope="col">Precio</th>
-									
+
 										<th scope="col">Impuesto</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="producto: ${session.carrito}" th:object="${session.carrito}">
-										
-										 <td th:text="${producto.nombre}" ></td>
-										 <td th:text="${producto.descripcion}" ></td>
-										 <td th:text="${producto.precio}" ></td>										 
-										  <td th:text="${producto.impuesto}" ></td>
+									<tr th:each="producto: ${session.carrito}"
+										th:object="${session.carrito}">
+
+										<td th:text="${producto.nombre}"></td>
+										<td th:text="${producto.descripcion}"></td>
+										<td th:text="${producto.precio}"></td>
+										<td th:text="${producto.impuesto}"></td>
 
 										<td>
 											<div class="action">
 
-												<a th:href="@{/tienda/productos/del/carrito/}+${producto.id}" class="text-danger" data-toggle="tooltip"
+												<a
+													th:href="@{/tienda/productos/del/carrito/}+${producto.id}"
+													class="text-danger" data-toggle="tooltip"
 													data-placement="top" title="" data-original-title="delete">
 													<i class="fa fa-remove h5 m-0"></i>
 												</a>
+
+
 											</div>
 										</td>
+
 									</tr>
+
 								</tbody>
+
 							</table>
+
+
+
 						</div>
 						<!-- end project-list -->
+
+
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- end row -->
 	</div>
+	<form type="submit" method="post">
+	<p class="text-center" th:each="pago: ${session.metodosPagos}" th:object="${session.metodosPagos}">
+	<input type="radio" name="unico"  th:value="${pago.metodoPago}" required>
+	<label th:text="${pago.metodoPago}"></label>
+	  </p>
 
-
+	
+	 
+						
+	<div class=" col-sm-12 col-md-6 col-lg-6 pull-rigth">
+		<a th:href="@{/tienda/productos/pedido}" class="btn btn-success btn-lg">Realizar Pedido </a>
+	</div>
+		</form>
 </body>
 </html>
