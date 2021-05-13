@@ -2,6 +2,7 @@ package com.tienda.services;
 
 import java.util.ArrayList;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,12 +40,11 @@ public class UsuarioServices {
 	    	usuarioRepository.deleteById(id);
 	    }
 	  
-	  public void encriptarClave() {
-		  /*
+	  public String encriptarClave(String clave) {
+		  
 		  Base64 base64 = new Base64();
-			String claveEncriptada = new String(base64.encode(parametroClave.getBytes()));
-			logger.info("contraseña Encriptada: ");
-			u.setClave(claveEncriptada);
-			*/
+			String claveEncriptada = new String(base64.encode(clave.getBytes()));
+			return claveEncriptada;	
+			
 	  }
 }

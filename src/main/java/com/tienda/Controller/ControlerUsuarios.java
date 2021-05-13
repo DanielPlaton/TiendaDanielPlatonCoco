@@ -37,7 +37,7 @@ public class ControlerUsuarios {
 
 		return "usuarios/usuarios";
 	}
-	
+
 	@GetMapping("/listaclientes")
 	public String getListaClientes(Model model) {
 		Iterable<Usuarios> listaUsuariosClientes = usuarioServices.obtenerUsuariosClientes();
@@ -60,31 +60,32 @@ public class ControlerUsuarios {
 		Usuarios u = new Usuarios();
 		ArrayList<Roles> listaRoles = rolesService.buscarRoles();
 		model.addAttribute("listaRoles", listaRoles);
-		u.setRoles(3);
 		model.addAttribute("usuario", u);
 
 		return "usuarios/usuarionuevo";
 	}
 
 	@PostMapping("/new/altausuario/submit")
-	public String postAltaUsuarios(Model model,@ModelAttribute @Valid Usuarios usuario, BindingResult bindingResult) {
+	public String postAltaUsuarios(Model model, Usuarios usuario) {
 
-		if (!bindingResult.hasErrors()) {
-			model.addAttribute("usuario", usuario);
-			usuarioServices.guardarUsuario(usuario);
-			if (usuario.getRoles() != 3) {
-				return "redirect:/tienda/usuarios/lista";
-			} else {
-				return "redirect:/tienda/login";
-			}
-			
-		}
-		if(usuario.getRoles()== 3) {
-			return "redirect :/tienda/usuarios/new/usuarionuevo";
-		}
-		return "redirect :/tienda/usuarios/new/altausuario";
-		
-		
+		model.addAttribute("usuario", usuario);
+
+		usuario.setClave(usuarioServices.encriptarClave(usuario.getClave()));
+		usuarioServices.guardarUsuario(usuario);
+
+		return "redirect:/tienda/usuarios/lista";
+
+	}
+
+	@PostMapping("/new/usuarionuevo/submit")
+	public String postUsuariosnuevo(Model model, Usuarios usuario) {
+		model.addAttribute("usuario", usuario);
+		usuario.setRoles(3);
+		usuario.setClave(usuarioServices.encriptarClave(usuario.getClave()));
+		usuarioServices.guardarUsuario(usuario);
+
+		return "redirect:/tienda/login";
+
 	}
 
 	@GetMapping("/edit/altausuario/{id}")
@@ -100,6 +101,7 @@ public class ControlerUsuarios {
 	@PostMapping("/edit/altausuario/submit")
 	public String submitEditContact(Model model, @Valid Usuarios usuario) {
 		System.out.println(usuario.toString());
+		usuario.setClave(usuarioServices.encriptarClave(usuario.getClave()));
 		usuarioServices.guardarUsuario(usuario);
 		return "redirect:/tienda/usuarios/lista";
 	}

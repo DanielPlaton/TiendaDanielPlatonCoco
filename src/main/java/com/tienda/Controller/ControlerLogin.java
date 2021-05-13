@@ -47,6 +47,27 @@ public class ControlerLogin {
 		return "login";
 	}
 
+
+	@PostMapping("/menuPrincipal")
+	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u, HttpSession session) {
+
+		
+		Usuarios uexiste = loginServices.buscarUsuarioEmailAndClave(u.getEmail(), u.getClave());
+
+		if (uexiste != null) {
+
+			session.setAttribute("usuario", uexiste);
+			model.addAttribute("usuario", uexiste);
+
+			return "redirect:/tienda/menuPrincipal";
+
+		} else {
+
+			return "login";
+		}
+
+	}
+	
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model, HttpSession session) {
 	
@@ -75,24 +96,6 @@ public class ControlerLogin {
 		return "menuPrincipal";
 	}
 
-	@PostMapping("/menuPrincipal")
-	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u, HttpSession session) {
-
-		Usuarios uexiste = loginServices.buscarUsuarioEmailAndClave(u.getEmail(), u.getClave());
-
-		if (uexiste != null) {
-
-			session.setAttribute("usuario", uexiste);
-			model.addAttribute("usuario", uexiste);
-
-			return "redirect:/tienda/menuPrincipal";
-
-		} else {
-
-			return "login";
-		}
-
-	}
 
 	@GetMapping("/logout")
 	public String getStringLogout(Model model, HttpSession session) {

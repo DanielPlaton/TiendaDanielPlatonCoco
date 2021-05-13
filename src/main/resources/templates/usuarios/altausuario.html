@@ -36,26 +36,7 @@
 
 							<input id="id" name="id" type="hidden" placeholder=""
 								class="form-control input-md" required="" th:field="*{id}">
-
-
-							<div th:if="${session.usuario.id == 3}">
-
-								<div class="form-group">
-									<label class="col-md-4 control-label" for="idrol">Id
-										Rol</label> <span class="col-md-1 col-md-offset-2 text-center">
-										<i class="fa fa-user bigicon"></i>
-									</span>
-									<div class="col-md-8">
-
-										<select class="form-control input-md" id="roles" name="roles"
-											th:field="*{roles}">
-											<option th:each="rol: ${listaRoles}" th:value="${rol.id}"
-												th:text="${rol.rol}" th:default="${rol.rol}"
-												disabled="disabled"></option>
-										</select>
-									</div>
-								</div>
-							</div>
+							
 
 
 							<div th:if="${session.usuario.id ==1}">
@@ -104,7 +85,7 @@
 									class="fa fa-user bigicon"></i></span>
 
 								<div class="col-md-8">
-									<input id="email" name="email" type="text"
+									<input id="email" name="email" type="email"
 										placeholder="Introduce email del usuario"
 										class="form-control input-md" th:field="*{email}">
 										<span class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Errores</span>
