@@ -45,120 +45,135 @@
 
 	<div class="navbar navbar-expand-md navbar-dark bg-dark "
 		role="navigation">
+		<div class="container-fluid">
 
-		<a class="navbar-brand" th:href="@{/tienda/menuPrincipal}">Tienda</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarCollapse" aria-controls="navbarCollapse"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<span th:if="${session.usuario!= null}"> <span
-			th:if="${session.usuario.roles!= 3 }">
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" id="dropdown1"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
-							<ul class="dropdown-menu" aria-labelledby="dropdown1">
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/usuarios/new/altausuario}">Alta Usuario</a></li>
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/usuarios/lista}">Ver Usuarios</a></li>
-							</ul></li>
-					</ul>
+			<a class="navbar-brand" th:href="@{/tienda/menuPrincipal}">Tienda</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarCollapse" aria-controls="navbarCollapse"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<ul class="navbar-nav me-auto mb-2 mb-sm-0">
+				<span th:if="${session.usuario!= null}"> <span
+					th:if="${session.usuario.roles!= 3 }">
+						<div class="collapse navbar-collapse" id="navbarCollapse">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" id="dropdown1"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">Usuarios</a>
+									<ul class="dropdown-menu" aria-labelledby="dropdown1">
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/usuarios/new/altausuario}">Alta
+												Usuario</a></li>
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/usuarios/lista}">Ver Usuarios</a></li>
+									</ul></li>
+							</ul>
+						</div>
+						<div class="collapse navbar-collapse" id="navbarCollapse">
+							<ul class="navbar-nav mr-auto">
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" id="dropdown1"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">Productos</a>
+									<ul class="dropdown-menu" aria-labelledby="dropdown1">
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/productos/new/altaproductos}">Alta
+												Producto</a></li>
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/productos/verproductos}">Ver Producto</a></li>
+									</ul></li>
+							</ul>
+
+						</div>
+				</span>
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" id="dropdown1"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">Pedidos</a>
+								<ul class="dropdown-menu" aria-labelledby="dropdown1">
+									<div th:if="${session.usuario.roles== 3}">
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/pedidos/verpedidosclientes}">Ver
+												Pedidos</a></li>
+									</div>
+									<div th:if="${session.usuario.roles== 2 }">
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/pedidos/verpedidos}">Pedidos
+												Pendientes</a></li>
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/pedidos/vertodoslospedidos}">ver todos
+												los pedidos</a></li>
+									</div>
+
+									<div th:if="${session.usuario.roles== 1 }">
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/pedidos/verpedidos}">Pedidos
+												Pendientes</a></li>
+										<li class="dropdown-item"><a
+											th:href="@{/tienda/pedidos/vertodoslospedidosadmin}">ver
+												todos los pedidos</a></li>
+									</div>
+
+								</ul></li>
+						</ul>
+					</div>
+				</span>
+				<!-- de la condicion usuario != null-->
+
+
+
+				<div class="text-end ">
+
+					<div th:if="${session.usuario== null}">
+						<div>
+							<button class="btn btn-outline-light me-2" type="submit"
+								method="get">
+								<a th:href="@{/tienda/usuarios/new/usuarionuevo}">Registrarse</a>
+							</button>
+							<button class="btn btn-outline-light me-2" type="submit"
+								method="get">
+								<a th:href="@{/tienda/login}">Acceder</a>
+							</button>
+						</div>
+					</div>
+
+					<div th:unless="${session.usuario==null}">
+						<div>
+
+							<a class="btn btn-outline-light me-2"
+								th:href="@{/tienda/usuarios/edit/altausuario/}+${session.usuario.id}"
+								style="color: white">Perfil</a> <span
+								th:text="${session.usuario.nombre}"></span>
+							<button class="btn btn-outline-light me-2" type="submit"
+								method="get">
+								<a th:href="@{/tienda/logout}">cerrar Session</a>
+							</button>
+						</div>
+
+					</div>
+					<div>
+						<button class="btn btn-outline-light me-2" type="submit">
+							<a id="cart-link" th:href="@{/tienda/productos/carrito}">Carrito</a>
+						</button>
+					</div>
 				</div>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" id="dropdown1"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
-							<ul class="dropdown-menu" aria-labelledby="dropdown1">
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/productos/new/altaproductos}">Alta
-										Producto</a></li>
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/productos/verproductos}">Ver Producto</a></li>
-							</ul></li>
-					</ul>
-
-				</div>
-		</span>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="dropdown1"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pedidos</a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown1">
-							<div th:if="${session.usuario.roles== 3}">
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/verpedidosclientes}">Ver Pedidos</a></li>
-							</div>
-							<div th:if="${session.usuario.roles== 2 }">
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/verpedidos}">Pedidos Pendientes</a></li>
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/vertodoslospedidos}">ver todos
-										los pedidos</a></li>
-							</div>
-
-							<div th:if="${session.usuario.roles== 1 }">
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/verpedidos}">Pedidos Pendientes</a></li>
-								<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/vertodoslospedidosadmin}">ver
-										todos los pedidos</a></li>
-							</div>
-
-						</ul></li>
-				</ul>
-			</div>
-		</span>
-		<!-- de la condicion usuario != null-->
-
-
-
-		<div class="text-end ">
-
-			<div th:if="${session.usuario== null}">
-				<div>
-					<button class="btn btn-outline-light me-2" type="submit"
-						method="get">
-						<a th:href="@{/tienda/usuarios/new/usuarionuevo}">Registrarse</a>
-					</button>
-					<button class="btn btn-outline-light me-2" type="submit"
-						method="get">
-						<a th:href="@{/tienda/login}">Acceder</a>
-					</button>
-				</div>
-			</div>
-
-			<div th:unless="${session.usuario==null}">
-				<div>
-
-					<a class="btn btn-outline-light me-2"
-						th:href="@{/tienda/usuarios/edit/altausuario/}+${session.usuario.id}"
-						style="color: white">Perfil</a>
-						<span th:text="${session.usuario.nombre}"></span>						
-					<button class="btn btn-outline-light me-2" type="submit"
-						method="get">
-						<a th:href="@{/tienda/logout}">cerrar Session</a>
-					</button>
-				</div>
-
-			</div>
-			<div>
-				<button class="btn btn-outline-light me-2" type="submit">
-					<a id="cart-link" th:href="@{/tienda/productos/carrito}">Carrito</a>
-				</button>
-			</div>
+			</ul>
 		</div>
 
+	</div>
 
-		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script
-			src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<script type="text/javascript">
-			
-		</script>
+
+
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>
