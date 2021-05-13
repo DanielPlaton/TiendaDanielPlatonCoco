@@ -22,6 +22,12 @@ public class UsuarioServices {
 		return listaUsuarios;		
 	}
 	
+	public ArrayList<Usuarios> obtenerUsuariosClientes(){
+		
+		ArrayList<Usuarios> listaUsuarios =  usuarioRepository.findByRoles(3);
+		
+		return listaUsuarios;
+	}
 	  public Usuarios obtenerUsuario(long id) {
 	        return usuarioRepository.findById(id);
 	    }
@@ -32,4 +38,13 @@ public class UsuarioServices {
 	  public void deleteUsuario(long id) {
 	    	usuarioRepository.deleteById(id);
 	    }
+	  
+	  public void encriptarClave() {
+		  /*
+		  Base64 base64 = new Base64();
+			String claveEncriptada = new String(base64.encode(parametroClave.getBytes()));
+			logger.info("contraseña Encriptada: ");
+			u.setClave(claveEncriptada);
+			*/
+	  }
 }

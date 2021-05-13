@@ -37,6 +37,14 @@ public class ControlerUsuarios {
 
 		return "usuarios/usuarios";
 	}
+	
+	@GetMapping("/listaclientes")
+	public String getListaClientes(Model model) {
+		Iterable<Usuarios> listaUsuariosClientes = usuarioServices.obtenerUsuariosClientes();
+		model.addAttribute("listaUsuarios", listaUsuariosClientes);
+
+		return "usuarios/usuarios";
+	}
 
 	@GetMapping("/new/altausuario")
 	public String nuevo(Model model) {
