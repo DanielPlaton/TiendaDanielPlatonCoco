@@ -52,8 +52,8 @@
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<span th:if="${session.usuario!= null}"> 
-			<span th:if="${session.usuario.roles!= 3 }">
+		<span th:if="${session.usuario!= null}"> <span
+			th:if="${session.usuario.roles!= 3 }">
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item dropdown"><a
@@ -82,7 +82,7 @@
 					</ul>
 
 				</div>
-			</span>
+		</span>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item dropdown"><a
@@ -96,17 +96,19 @@
 							<div th:if="${session.usuario.roles== 2 }">
 								<li class="dropdown-item"><a
 									th:href="@{/tienda/pedidos/verpedidos}">Pedidos Pendientes</a></li>
-									<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/vertodoslospedidos}">ver todos los pedidos</a></li>
+								<li class="dropdown-item"><a
+									th:href="@{/tienda/pedidos/vertodoslospedidos}">ver todos
+										los pedidos</a></li>
 							</div>
-							
+
 							<div th:if="${session.usuario.roles== 1 }">
 								<li class="dropdown-item"><a
 									th:href="@{/tienda/pedidos/verpedidos}">Pedidos Pendientes</a></li>
-									<li class="dropdown-item"><a
-									th:href="@{/tienda/pedidos/vertodoslospedidosadmin}">ver todos los pedidos</a></li>
+								<li class="dropdown-item"><a
+									th:href="@{/tienda/pedidos/vertodoslospedidosadmin}">ver
+										todos los pedidos</a></li>
 							</div>
-							
+
 						</ul></li>
 				</ul>
 			</div>
@@ -133,12 +135,14 @@
 			<div th:unless="${session.usuario==null}">
 				<div>
 
-					<a style="color: white">Bienvenido <a style="color: white"
-						th:text="${session.usuario.nombre}" /></a>
-						<button class="btn btn-outline-light me-2" type="submit"
-							method="get">
-							<a th:href="@{/tienda/logout}">cerrar Session</a>
-						</button>
+					<a class="btn btn-outline-light me-2"
+						th:href="@{/tienda/usuarios/edit/altausuario/}+${session.usuario.id}"
+						style="color: white">Perfil</a>
+						<span th:text="${session.usuario.nombre}"></span>						
+					<button class="btn btn-outline-light me-2" type="submit"
+						method="get">
+						<a th:href="@{/tienda/logout}">cerrar Session</a>
+					</button>
 				</div>
 
 			</div>

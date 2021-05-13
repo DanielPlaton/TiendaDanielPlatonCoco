@@ -20,6 +20,7 @@ import com.tienda.modelo.DetallePedido;
 import com.tienda.modelo.MetodosPago;
 import com.tienda.modelo.Pedidos;
 import com.tienda.modelo.Productos;
+import com.tienda.modelo.Roles;
 import com.tienda.modelo.Usuarios;
 import com.tienda.services.CategoriasServices;
 import com.tienda.services.DetallePedidoServices;
@@ -78,14 +79,16 @@ public class ControlerProductos {
 
 	@GetMapping("/edit/productos/{id}")
 	public String editProducto(@PathVariable("id") long id, Model model) {
+		
 		Productos producto = productoServices.obtenerProducto(id);
 		model.addAttribute("producto", producto);
 		return "productos/editProductos";
 	}
+	
 
 	@GetMapping("/edit/producto/submit")
 	public String submitEditProducto(Model model, @ModelAttribute Productos producto) {
-		System.out.println(producto.toString());
+		
 		
 		productoServices.guardarProducto(producto);
 
@@ -136,7 +139,7 @@ public class ControlerProductos {
 		session.getAttribute("carrito");
 		ArrayList<MetodosPago> metodosPagos = metodosPagoServices.buscarMetodosPago();
 		session.setAttribute("metodosPagos", metodosPagos);
-		return "productos/productos";
+		return "productos/carrito";
 
 	}
 	
@@ -190,7 +193,8 @@ public class ControlerProductos {
 					detallePedidosServices.guardarDetallePedido(detallePedido);
 				}
 				
-				carrito = null;
+				carrito =new ArrayList<Productos>();
+				session.setAttribute("carrito", carrito);
 
 				return "redirect:/tienda/menuPrincipal";
 

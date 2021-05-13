@@ -121,22 +121,25 @@ body {
 		<!-- end row -->
 	</div>
 
-	<form action="/pedido" th:action="@{/tienda/productos/pedido}"
-		method="get">
-		<select id="metodopago" name="metodopago">
-			<option th:each="pago: ${session.metodosPagos}"
-				th:value="${pago.metodoPago}" th:text="${pago.metodoPago}"th:selected="false">
-
-			</option>
-		</select>
+	<div th:if="${session.carrito.size > 0}">
+		<form action="/pedido" th:action="@{/tienda/productos/pedido}"
+			method="get">
+			<div >
+				<select class="form-group" id="metodopago" name="metodopago">
+					<option th:each="pago: ${session.metodosPagos}"
+						th:value="${pago.metodoPago}" th:text="${pago.metodoPago}"
+						th:selected="false"></option>
+				</select>
 		
-		<div class=" col-sm-12 col-md-6 col-lg-6 pull-rigth">
-		<input class="btn btn-success btn-lg" th:href="@{/tienda/productos/pedido}" type="submit" value="Realizar pedido">
-		<!-- ><a class="btn btn-success btn-lg">Realizar Pedido </a> -->
+			<div class=" col-sm-12 col-md-6 col-lg-6 pull-rigth">
+				<input class="btn btn-success btn-lg"
+					th:href="@{/tienda/productos/pedido}" type="submit"
+					value="Realizar pedido">
+				<!-- ><a class="btn btn-success btn-lg">Realizar Pedido </a> -->
+			</div>
+		</form>
+
 	</div>
-	</form>
-
-
 
 </body>
 </html>

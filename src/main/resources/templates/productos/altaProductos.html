@@ -9,115 +9,147 @@
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	rel="stylesheet">
+	
+<style type="text/css">
+.header {
+	color: #36A0FF;
+	font-size: 27px;
+	padding: 10px;
+}
 
+.bigicon {
+	font-size: 35px;
+	color: #36A0FF;
+}
+</style>
 
 </head>
 <body>
-	<form class="form-horizontal" method="post"
-		th:action="@{/tienda/productos/new/altaproductos/submit}"
-		th:object="${producto}">
-		<fieldset>
-			<!-- Text input-->
 
-			<input id="id" name="id" type="hidden" placeholder=""
-				class="form-control input-md" required="" th:field="*{id}">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="well well-sm">
+				
+					<form class="form-horizontal" method="post"
+						th:action="@{/tienda/productos/new/altaproductos/submit}"
+						th:object="${producto}">
+						<fieldset>
+							<!-- Text input-->
+							<legend class="text-center header">Alta Producto</legend>
+							<input id="id" name="id" type="hidden" placeholder=""
+								class="form-control input-md" required="" th:field="*{id}">
 
 
-		
-						
 
-				<label class="col-md-4 control-label" for="idrol">Id Categoria</label>
-				<div class="col-md-4">
-					<div class="form-group">
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="idrol">Id
+									Categoria</label> 
+									<span class="col-md-1 col-md-offset-2 text-center"><i
+									class="fa fa-user bigicon"></i></span>
+									
+								<div class="col-md-8">
+									<input id="categorias" name="categorias" type="text"
+										placeholder="Introduce la categoria"
+										class="form-control input-md" required=""
+										th:field="*{categorias}">
 
-						<input id="categorias" name="categorias" type="text"
-							placeholder="Introduce la categoria" class="form-control input-md"
-							required="" th:field="*{categorias}">
-					</div>
-				</div>	
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="nombre">Nombre Producto</label>
-				<div class="col-md-4">
-					<input id="nombre" name="nombre" type="text"
-						placeholder="Introduce el nombre del producto"
-						class="form-control input-md" required="" th:field="*{nombre}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="nombre">Nombre
+									Producto</label> <span class="col-md-1 col-md-offset-2 text-center"><i
+									class="fa fa-user bigicon"></i></span>
+								<div class="col-md-8">
+									<input id="nombre" name="nombre" type="text"
+										placeholder="Introduce el nombre del producto"
+										class="form-control input-md" required="" th:field="*{nombre}">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="descripcion">Descripcion</label>
+									<span class="col-md-1 col-md-offset-2 text-center"><i
+									class="fa fa-user bigicon"></i></span>
+								<span class="col-md-1 col-md-offset-2 text-center"><i
+									class="fa fa-envelope-o bigicon"></i></span>
+								<div class="col-md-8">
+									<input id="descripcion" name="descripcion" type="text"
+										placeholder="Introduce la descripcion del producto"
+										class="form-control input-md" th:field="*{descripcion}">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="precio">Precio</label>
+								<span class="col-md-1 col-md-offset-2 text-center"><i
+									class="fa fa-envelope-o bigicon"></i></span>
+								<div class="col-md-8">
+
+									<input id="precio" name="precio" type="text"
+										placeholder="Introduce un precio"
+										class="form-control input-md" required="" th:field="*{precio}">
+
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="stock">Stock</label>
+									<span class="col-md-1 col-md-offset-2 text-center"><i
+										class="fa fa-pencil-square-o bigicon"></i></span>
+									<div class="col-md-8">
+										<input id="stock" name="stock" type="text"
+											placeholder="Introduce un stock del producto"
+											class="form-control input-md" th:field="*{stock}" required="">
+									</div>
+								</div>
+								<!--  
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="fecha_baja">Fecha
+										Baja <span class="col-md-1 col-md-offset-2 text-center"><i
+										class="fa fa-pencil-square-o bigicon"></i></span>
+								
+											<input id="fecha_baja" name="fecha_baja" type="Date"
+												placeholder="Introduce la fecha de baja"
+												class="form-control input-md" th:field="*{fecha_baja}">
+									
+								</div>
+								-->
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="impuesto">Impuesto</label>
+									<span class="col-md-1 col-md-offset-2 text-center"><i
+										class="fa fa-pencil-square-o bigicon"></i></span>
+									<div class="col-md-8">
+										<input id="impuesto" name="impuesto" type="text"
+											placeholder="Introduce el impuesto"
+											class="form-control input-md" th:field="*{impuesto}"
+											required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="imagen">Ruta
+										Imagen</label> <span class="col-md-1 col-md-offset-2 text-center"><i
+										class="fa fa-pencil-square-o bigicon"></i></span>
+									<div class="col-md-8">
+										<input id="direccion" name="direccion" type="text"
+											placeholder="Introduce la url de la imagen"
+											class="form-control input-md" th:field="*{imagen}">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-md-12 text-center">
+										<input class="w-25 btn btn-lg btn-primary" type="submit"
+											value="Entrar" />
+									</div>
+								</div>
+						</fieldset>
+
+
+					</form>
 				</div>
 			</div>
-
-			<!-- Password input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="descripcion">Descripcion</label>
-				<div class="col-md-4">
-					<input id="descripcion" name="descripcion" type="text"
-						placeholder="Introduce la descripcion del producto"
-						class="form-control input-md" th:field="*{descripcion}">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="precio">Precio</label>
-				<div class="col-md-4">
-					<input id="precio" name="precio" type="text"
-						placeholder="Introduce un precio"
-						class="form-control input-md" required="" th:field="*{precio}">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="stock">Stock</label>
-				<div class="col-md-4">
-					<input id="stock" name="stock" type="text"
-						placeholder="Introduce un stock del producto"
-						class="form-control input-md" th:field="*{stock}" required="">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<!--
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="apellido1">Fecha Baja
-					</label>
-				<div class="col-md-4">
-					<input id="fecha_baja" name="fecha_baja" type="Date"
-						placeholder="Introduce la fecha de baja"
-						class="form-control input-md" th:field="*{fecha_baja}">
-
-				</div>
-			</div>
--->
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="impuesto">Impuesto</label>
-				<div class="col-md-4">
-					<input id="impuesto" name="impuesto" type="text"
-						placeholder="Introduce el impuesto"
-						class="form-control input-md" th:field="*{impuesto}" required="">
-
-				</div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="imagen">Ruta Imagen</label>
-				<div class="col-md-4">
-					<input id="direccion" name="direccion" type="text"
-						placeholder="Introduce la url de la imagen"
-						class="form-control input-md" th:field="*{imagen}">
-
-				</div>
-			</div>
-
-
-		</fieldset>
-
-		<button class="w-25 btn btn-lg btn-primary" type="submit"
-			value="Entrar">Entrar</button>
-	</form>
+		</div>
+	</div>
 </body>
 </html>

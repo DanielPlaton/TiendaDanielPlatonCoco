@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "usuarios")
@@ -16,11 +18,14 @@ public class Usuarios implements java.io.Serializable {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "id_rol", nullable = true)
+	@Column(name = "id_rol")
 	private long roles;
-	@Column(name = "email", nullable = true)
+	@Column(name = "email")
+	@NotNull(message="No puede estar vacio el email")
+	@Email
 	private String email;
-	@Column(name = "clave", nullable = true)
+	@NotNull(message="No puede estar vacia la clave")
+	@Column(name = "clave")
 	private String clave;
 	@Column(name = "nombre", nullable = true)
 	private String nombre;
