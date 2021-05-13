@@ -58,6 +58,7 @@ public class ControlerUsuarios {
 	@GetMapping("/new/usuarionuevo")
 	public String nuevoUsuario(Model model) {
 		Usuarios u = new Usuarios();
+		u.setRoles(3);
 		ArrayList<Roles> listaRoles = rolesService.buscarRoles();
 		model.addAttribute("listaRoles", listaRoles);
 		model.addAttribute("usuario", u);
@@ -97,14 +98,32 @@ public class ControlerUsuarios {
 		model.addAttribute("usuario", usuario);
 		return "usuarios/altausuario";
 	}
+	
+	@GetMapping("/edit/usuarionuevo/{id}")
+	public String editUsuarionuevo(@PathVariable("id") long id, Model model) {
+
+		Usuarios usuario = usuarioServices.obtenerUsuario(id);
+		usuario.setRoles(3);
+		model.addAttribute("usuario", usuario);
+		return "usuarios/usuarionuevo";
+	}
+	
+	@PostMapping("/edit/usuarionuevo/submit")
+	public String postEditUsuarionuevo(Model model) {
+		
+		return "redirect:/tienda/menuPrincipal";
+	}
 
 	@PostMapping("/edit/altausuario/submit")
 	public String submitEditContact(Model model, @Valid Usuarios usuario) {
 		System.out.println(usuario.toString());
 		usuario.setClave(usuarioServices.encriptarClave(usuario.getClave()));
 		usuarioServices.guardarUsuario(usuario);
+	
 		return "redirect:/tienda/usuarios/lista";
 	}
+	
+	
 
 	@GetMapping("/del/altausuario/{id}")
 	public String borrarUsuario(Model model, @PathVariable("id") long id) {

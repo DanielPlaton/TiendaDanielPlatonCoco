@@ -29,13 +29,15 @@
 			<div class="col-md-12">
 				<div class="well well-sm">
 					<form class="form-horizontal" method="post"
-						th:action="@{/tienda/usuarios/new/usuarionuevo/submit}"
+						th:action="${session.usuario == null} ? @{/tienda/usuarios/new/usuarionuevo/submit} : @{/tienda/usuarios/edit/usuarionuevo/submit}" 
 						th:object="${usuario}">
 						<fieldset>
 							<!-- Text input-->
 
 							<input id="id" name="id" type="hidden" placeholder=""
 								class="form-control input-md" required="" th:field="*{id}">
+								<input id="id" name="id" type="hidden" placeholder=""
+								class="form-control input-md" required="" th:field="*{roles}" th:value="${3}">
 
 <!--  				
 							<div th:if="${usuario.id == 0}">

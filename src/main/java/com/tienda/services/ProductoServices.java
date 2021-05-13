@@ -40,10 +40,12 @@ public class ProductoServices {
 	}
 	
 	public void deleteProducto(long id) {
+		logger.info("borrando producto "+id);
 		productosRepository.deleteById(id);
 	}
 
 	public void guardarProducto(Productos producto) {
+		logger.info("guardando o actualizando el producto "+producto);
 		productosRepository.save(producto);
 		
 	}
