@@ -24,6 +24,9 @@ public class PedidosServices {
 	  public ArrayList<Pedidos> obtenerPedidosIdUsuario(long id) {
 	        return pedidosRepository.findByUsuarios(id);
 	    }
+	  public ArrayList<Pedidos> obtenerPedidosPendientes(String estado) {
+	        return pedidosRepository.findByEstado(estado);
+	    }
 	  
 		public Pedidos guardarPedido(Pedidos pedido) {
 			return pedidosRepository.save(pedido);

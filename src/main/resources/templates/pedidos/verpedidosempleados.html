@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
-<title>Lista Usuario</title>
+<title>Lista Pedidos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -31,7 +31,8 @@ body {
 </style>
 </head>
 <body>
-	<div th:insert="@{header.html}"></div>
+<div th:insert="@{header.html}">
+</div>
 	<link
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 		rel="stylesheet">
@@ -71,39 +72,35 @@ body {
 							<table class="table project-table table-centered table-nowrap">
 								<thead>
 									<tr>
-										<th scope="col">Rol</th>
-										<th scope="col">Email</th>
-										<th scope="col">Nombre</th>
-										<th scope="col">Apellido 1</th>
-										<th scope="col">Apellido 2</th>
+										<th scope="col">Numero Fact</th>
+										<th scope="col">Estado</th>
+										<th scope="col">Total</th>
+										<th scope="col">Detalles Pedido</th>
+									
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="usuario: ${listaUsuarios}">
-																		
-										<th th:text="${usuario.roles}"></th>
-										<td th:text="${usuario.email}"></td>
-										<td th:text="${usuario.nombre}"></td>
-										<td th:text="${usuario.apellido1}">
-										<td th:text="${usuario.apellido2}">
+									<tr th:each="pedido: ${listaPedidos}">
+									<th th:text="${pedido.numFactura}" ></th>
+										<th th:text="${pedido.estado}" ></th>
+										<td th:text="${pedido.total}"></td>
+										<td><a th:href="@{/tienda/pedidos/verdetallepedidosclientes/}+${pedido.id}"> Ver detalles del pedido</a></td>
+
 										<td>
 											<div class="action">
-												<a
-													th:href="@{/tienda/usuarios/edit/altausuario/}+${usuario.id}"
-													class="text-success mr-4" data-toggle="tooltip"
-													data-placement="top" title="" data-original-title="Edit">
-													<i class="fa fa-pencil h5 m-0"></i>
-												</a> <a
-													th:href="@{/tienda/usuarios/del/altausuario/}+${usuario.id}"
-													class="text-danger" data-toggle="tooltip"
+											<!-- -->
+														<div th:if="${pedido.estado == 'pendiente'} " >							
+													 <a th:href="@{/tienda/pedidos/validar/pedidos/}+${pedido.id}" class="text-validate" data-toggle="tooltip"
 													data-placement="top" title="" data-original-title="delete">
-													<i class="fa fa-remove h5 m-0"></i>
-												</a>
+													<i class="fa fa-check h5 m-0"></i></a>
+													</div>
+													
+														
+												
+												
 											</div>
 										</td>
 									</tr>
-
-
 								</tbody>
 							</table>
 						</div>

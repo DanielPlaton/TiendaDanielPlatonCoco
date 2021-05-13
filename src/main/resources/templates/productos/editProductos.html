@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
 <!--  All snippets are MIT license http://bootdey.com/license -->
-<title>Alta Producto</title>
+<title>Editar Producto</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -13,18 +13,14 @@
 
 </head>
 <body>
-	<form class="form-horizontal" method="post"
-		th:action="@{/tienda/productos/new/altaproductos/submit}"
+	<form class="form-horizontal" method="get"
+		th:action="@{/tienda/productos/edit/productos/submit}"
 		th:object="${producto}">
 		<fieldset>
 			<!-- Text input-->
 
 			<input id="id" name="id" type="hidden" placeholder=""
 				class="form-control input-md" required="" th:field="*{id}">
-
-
-		
-						
 
 				<label class="col-md-4 control-label" for="idrol">Id Categoria</label>
 				<div class="col-md-4">
@@ -78,20 +74,19 @@
 				</div>
 			</div>
 
-			<!-- Text input-->
-			<!--
+		
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="apellido1">Fecha Baja
+				<label class="col-md-4 control-label" for="fecha_baja">Fecha Baja
 					</label>
 				<div class="col-md-4">
-					<input id="fecha_baja" name="fecha_baja" type="Date"
+					<input id="fecha_baja" name="fecha_baja" type="text"
 						placeholder="Introduce la fecha de baja"
 						class="form-control input-md" th:field="*{fecha_baja}">
 
 				</div>
 			</div>
--->
-			<!-- Text input-->
+			 
+
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="impuesto">Impuesto</label>
 				<div class="col-md-4">
@@ -116,8 +111,8 @@
 
 		</fieldset>
 
-		<button class="w-25 btn btn-lg btn-primary" type="submit"
-			value="Entrar">Entrar</button>
+		<input class="w-25 btn btn-lg btn-primary" type="submit"
+			value="Entrar"/>
 	</form>
 </body>
 </html>

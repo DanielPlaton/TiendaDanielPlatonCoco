@@ -31,8 +31,7 @@ body {
 </style>
 </head>
 <body>
-<div th:insert="@{header.html}">
-</div>
+	<div th:insert="@{header.html}"></div>
 	<link
 		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
 		rel="stylesheet">
@@ -76,25 +75,37 @@ body {
 										<th scope="col">Estado</th>
 										<th scope="col">Total</th>
 										<th scope="col">Detalles Pedido</th>
-									
+
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="pedido: ${listaPedidos}">
-									<th th:text="${pedido.numFactura}" ></th>
-										<th th:text="${pedido.estado}" ></th>
+										<th th:text="${pedido.numFactura}"></th>
+										<th th:text="${pedido.estado}"></th>
 										<td th:text="${pedido.total}"></td>
-										<td><a th:href="@{/tienda/pedidos/verdetallepedidosclientes/}+${pedido.id}"> Ver detalles del pedido</a></td>
+										<td><a
+											th:href="@{/tienda/pedidos/verdetallepedidosclientes/}+${pedido.id}">
+												Ver detalles del pedido</a></td>
 
 										<td>
 											<div class="action">
-											<!-- -->
-																					
-													 <a th:href="@{/tienda/pedidos/cancelar/pedidos/}+${pedido.id}" class="text-danger" data-toggle="tooltip"
-													data-placement="top" title="" data-original-title="delete">
-													<i class="fa fa-remove h5 m-0"></i>
-												</a>
-												
+												<!-- -->
+												<div th:if="${pedido.estado == 'pendiente'} " >
+													<a 
+														th:href="@{/tienda/pedidos/cancelar/pedidos/}+${pedido.id}"
+														class="text-danger" data-toggle="tooltip"
+														data-placement="top" title="" data-original-title="delete">
+														<i class="fa fa-remove h5 m-0"></i>
+													</a>
+												</div>
+												<div th:unless="${pedido.estado != 'cancelado'} " >
+													<a 
+														th:href="@{/tienda/pedidos/cancelar/pedidos/}+${pedido.id}"
+														class="text-danger" data-toggle="tooltip"
+														data-placement="top" title="" data-original-title="delete">
+														<i class="fa fa-remove h5 m-0"></i>
+													</a>
+												</div>
 											</div>
 										</td>
 									</tr>

@@ -23,30 +23,21 @@
 				class="form-control input-md" required="" th:field="*{id}">
 
 
-			<div th:style="${usuario.id ==3} ? 'display: none' : '' ">
-						
+			<div th:if="${usuario.id ==3}">
 
-				<label class="col-md-4 control-label" for="idrol">Id Rol</label>
-				<div class="col-md-4">
-					<div class="form-group">
 
-						<!-- 
-							<form type="submit" method="get">
-							<select th:field="*{listaRoles}">
-								<div>
-									<option th:each="rol : ${listaRoles} " th:value="${rol.id}"
-										th:text="${rol.nombre}" />
-							</select>
-							</form>
-						-->
-						<input id="roles" name="roles" type="text"
-							placeholder="Introduce el rol" class="form-control input-md"
-							required="" th:field="*{roles}">
 
-					</div>
 
+			</div>
+
+			<label class="col-md-4 control-label" for="idrol">Id Rol</label>
+			<div class="col-md-4">
+				<div class="form-group">
+					<select class="form-control input-md" id="roles" name="roles" th:field="*{roles}">
+						<option th:each="rol: ${listaRoles}" th:value="${rol.id}"
+							th:text="${rol.rol}" th:default="${rol.rol}"></option>
+					</select>
 				</div>
-
 
 			</div>
 			<!-- Text input-->

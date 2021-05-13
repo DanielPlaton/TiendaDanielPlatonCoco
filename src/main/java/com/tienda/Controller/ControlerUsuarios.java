@@ -66,6 +66,8 @@ public class ControlerUsuarios {
 
 	@GetMapping("/edit/altausuario/{id}")
 	public String editUsuario(@PathVariable("id") long id, Model model) {
+		ArrayList<Roles> listaRoles = rolesService.buscarRoles();
+		model.addAttribute("listaRoles", listaRoles);
 		Usuarios usuario = usuarioServices.obtenerUsuario(id);
 		model.addAttribute("usuario", usuario);
 		return "usuarios/altausuario";

@@ -93,6 +93,20 @@
 								<li class="dropdown-item"><a
 									th:href="@{/tienda/pedidos/verpedidosclientes}">Ver Pedidos</a></li>
 							</div>
+							<div th:if="${session.usuario.roles== 2 }">
+								<li class="dropdown-item"><a
+									th:href="@{/tienda/pedidos/verpedidos}">Pedidos Pendientes</a></li>
+									<li class="dropdown-item"><a
+									th:href="@{/tienda/pedidos/vertodoslospedidos}">ver todos los pedidos</a></li>
+							</div>
+							
+							<div th:if="${session.usuario.roles== 1 }">
+								<li class="dropdown-item"><a
+									th:href="@{/tienda/pedidos/verpedidos}">Pedidos Pendientes</a></li>
+									<li class="dropdown-item"><a
+									th:href="@{/tienda/pedidos/vertodoslospedidosadmin}">ver todos los pedidos</a></li>
+							</div>
+							
 						</ul></li>
 				</ul>
 			</div>

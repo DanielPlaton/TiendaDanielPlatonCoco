@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,8 +67,7 @@ public class ControlerProductos {
 	}
 
 	@PostMapping("/new/altaproductos/submit")
-	public String postAltaProductos(Model model, Productos producto) {
-		model.addAttribute("producto", producto);
+	public String postAltaProductos(@ModelAttribute Productos producto) {
 		// String fecha = producto.getFecha_baja().toString();
 		// producto.setFecha_baja(productoServices.transformarFecha(fecha));
 		productoServices.guardarProducto(producto);
@@ -77,15 +77,16 @@ public class ControlerProductos {
 	}
 
 	@GetMapping("/edit/productos/{id}")
-	public String editUsuario(@PathVariable("id") long id, Model model) {
+	public String editProducto(@PathVariable("id") long id, Model model) {
 		Productos producto = productoServices.obtenerProducto(id);
 		model.addAttribute("producto", producto);
-		return "productos/altaproductos";
+		return "productos/editProductos";
 	}
 
-	@PostMapping("/edit/producto/submit")
-	public String submitEditContact(Model model, Productos producto) {
+	@GetMapping("/edit/producto/submit")
+	public String submitEditProducto(Model model, @ModelAttribute Productos producto) {
 		System.out.println(producto.toString());
+		
 		productoServices.guardarProducto(producto);
 
 		return "redirect:/tienda/productos/verproductos";
@@ -139,10 +140,8 @@ public class ControlerProductos {
 
 	}
 	
-	//pedidos
-
 	@GetMapping("/pedido")
-	public String realizarProducto(/*@RequestParam("metodopago")String metodopago,*/ Model model,
+	public String realizarPedido(@RequestParam("metodopago")String metodopago,Model model,
 			HttpSession session) {
 		System.out.println("hola");
 		Usuarios u = (Usuarios) session.getAttribute("usuario");
@@ -154,7 +153,7 @@ public class ControlerProductos {
 				Usuarios usuarioRegistrado = (Usuarios) session.getAttribute("usuario");
 				Pedidos pedidos = new Pedidos();
 				pedidos.setUsuarios(usuarioRegistrado.getId());
-				pedidos.setMetodoPago("Paypal");
+				pedidos.setMetodoPago(metodopago);
 				pedidos.setEstado("pendiente");
 				double total = 0;
 				for (int i = 0; i < carrito.size(); i++) {
@@ -190,8 +189,8 @@ public class ControlerProductos {
 
 					detallePedidosServices.guardarDetallePedido(detallePedido);
 				}
-
-				// detallePedidosServices.guardarDetallesPedidos(carritoDetallesPedidos);
+				
+				carrito = null;
 
 				return "redirect:/tienda/menuPrincipal";
 
@@ -203,5 +202,5 @@ public class ControlerProductos {
 		return "redirect:/tienda/login";
 
 	}
-
+	
 }

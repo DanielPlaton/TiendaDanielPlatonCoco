@@ -13,6 +13,7 @@ public interface PedidosRepository  extends CrudRepository<Pedidos, Long>  {
 	ArrayList<Pedidos> findAll();
 
 	ArrayList<Pedidos> findByUsuarios(long id);
+	ArrayList<Pedidos> findByEstado(String estado);
 	
 	Pedidos findById(long id);
 }
