@@ -38,15 +38,21 @@ body {
 
 	<div class="container">
 		<div class="row">
-
+ <!--  
 			<div class="col-xl-3 col-md-6">
 				<div class="card">
 					<div class="card-body">
-						<form>
+					<div class="card-body row no-gutters align-items-center">
+			            <div class="col-auto">
+			                <select class="h5" name="valor">
+			                	<option value="nombre">Nombre</option>
+			                </select>
+			            </div>
+			           
+			           <form>
 							<div class="form-group mb-0">
-								<label>Search</label>
 								<div class="input-group mb-0">
-									<input type="text" class="form-control" placeholder="Search..."
+									<input type="text" class="form-control" placeholder="Search..." id="buscar"
 										aria-describedby="project-search-addon" />
 									<div class="input-group-append">
 										<button class="btn btn-danger" type="button"
@@ -57,10 +63,13 @@ body {
 								</div>
 							</div>
 						</form>
+					
 					</div>
+							
 				</div>
 			</div>
 		</div>
+	-->
 		<!-- end row -->
 
 		<div class="row">
@@ -109,17 +118,7 @@ body {
 						</div>
 						<!-- end project-list -->
 
-						<div class="pt-3">
-							<ul class="pagination justify-content-end mb-0">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item active"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a>
-								</li>
-							</ul>
-						</div>
+						
 					</div>
 				</div>
 			</div>

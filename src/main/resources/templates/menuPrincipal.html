@@ -15,22 +15,21 @@
 	href="https://getbootstrap.com/docs/5.0/examples/album/">
 <link th:href="@{menuPrincipal.css}" rel="stylesheet">
 
- <style>
+<style>
 .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      
-    </style>
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+</style>
 <title>Menu Principal</title>
 <div th:insert="@{header.html}"></div>
 
@@ -57,28 +56,48 @@
 		<div class="collapse navbar-collapse "
 			style="display: flex; flex-direction: column; align-items: center;"
 			id="opciones">
-			<ul class="navbar-nav" >
-				<li style="margin-right: 20px;" class="nav-item" th:each="categoria : ${listaCategorias} "> 
-					<a th:href="@{/tienda/busqueda/}+${categoria.id}"> <label
-						th:text="${categoria.nombre}"></label> </a>
-				</li>
-				<li style="margin-right: 20px;"><a th:href="@{/tienda/busqueda/}"> <label> Todos
-							los productos </label></a></li>
+			<ul class="navbar-nav">
+				<li style="margin-right: 20px;" class="nav-item"
+					th:each="categoria : ${listaCategorias} "><a
+					th:href="@{/tienda/busqueda/}+${categoria.id}"> <label
+						th:text="${categoria.nombre}"></label>
+				</a></li>
+				<li style="margin-right: 20px;"><a
+					th:href="@{/tienda/busqueda/}"> <label> Todos los
+							productos </label></a></li>
 			</ul>
 		</div>
-		
-					<div>
-			<form class="form-inline mt-2 mt-md-0"  style="height: 50px; line-height: 50px" >
-				<input class="form-control mr-sm-2" type="text" placeholder="Search"
-					aria-label="Search">
-				<button	class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+		<div>
+		<!--  
+			<form class="form-inline mt-2 mt-md-0"
+				style="height: 50px; line-height: 50px" th:action="@{/tienda/busqueda}">
+
+				<div class="card-body row no-gutters align-items-center">
+					<div class="col-auto">
+						<select class="h5" name="valor">
+							<option value="nombre">Nombre</option>
+							<option value="precio-mayor-que">Precio mayor a</option>
+							<option value="precio-menor-que">Precio menor a</option>
+						</select>
+					</div>
+					
+					<div class="col">
+						<input class="form-control mr-sm-2" type="text" name="buscar" id="buscar"
+							placeholder="Search" aria-label="buscar">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">buscar</button>
+					</div>
+					
+				</div>
+
 
 			</form>
+			-->
 
 		</div>
-		
+
 	</nav>
-	
+
 	<div></div>
 
 
@@ -137,6 +156,6 @@
 			</div>
 		</div>
 	</div>
-<div th:insert="@{footer.html}"></div>
+	<div th:insert="@{footer.html}"></div>
 </body>
 </html>

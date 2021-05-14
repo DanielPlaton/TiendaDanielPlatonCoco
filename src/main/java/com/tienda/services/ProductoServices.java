@@ -77,4 +77,24 @@ public class ProductoServices {
 	
 		return timestamp;
 	}
+
+	public ArrayList<Productos> buscadorNombre(String cadena) {
+		ArrayList<Productos> listaProductos = (ArrayList<Productos>) productosRepository.findByNombreContains(cadena);
+		 logger.info("Obteniendo lista producto por nombre  "+listaProductos.toString());
+		return listaProductos;
+	}
+
+	public ArrayList<Productos> buscadorPrecioMayor(String cadena) {
+		double precioMayor = Double.parseDouble(cadena);
+		ArrayList<Productos> listaProductos = (ArrayList<Productos>) productosRepository.findByPrecioGreaterThan(precioMayor);
+		 logger.info("Obteniendo lista producto  "+listaProductos.toString());
+		return listaProductos;
+	}
+
+	public ArrayList<Productos> buscadorPrecioMenor(String cadena) {
+		double precioMenor = Double.parseDouble(cadena);
+		ArrayList<Productos> listaProductos = (ArrayList<Productos>) productosRepository.findByPrecioGreaterThan(precioMenor);
+		 logger.info("Obteniendo lista producto por precio menor  "+listaProductos.toString());
+		return listaProductos;
+	}
 }

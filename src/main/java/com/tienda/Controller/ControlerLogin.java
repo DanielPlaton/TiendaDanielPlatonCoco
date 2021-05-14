@@ -30,8 +30,8 @@ import javassist.expr.NewArray;
 public class ControlerLogin {
 
 	ArrayList<Productos> listaProductos;
-	ArrayList<Productos> carrito ;
-	
+	ArrayList<Productos> carrito;
+
 	@Autowired
 	public LoginServices loginServices;
 	@Autowired
@@ -47,11 +47,9 @@ public class ControlerLogin {
 		return "login";
 	}
 
-
 	@PostMapping("/menuPrincipal")
 	public String postLoginPrincipal(Model model, @ModelAttribute Usuarios u, HttpSession session) {
 
-		
 		Usuarios uexiste = loginServices.buscarUsuarioEmailAndClave(u.getEmail(), u.getClave());
 
 		if (uexiste != null) {
@@ -67,22 +65,23 @@ public class ControlerLogin {
 		}
 
 	}
-	
+
 	@GetMapping("/menuPrincipal")
 	public String getStringLoginPrincipal(Model model, HttpSession session) {
-	
+
 		model.addAttribute("usuario", new Usuarios());
-		
-		listaProductos= (ArrayList<Productos>) session.getAttribute("listaProductos");
+
+		listaProductos = (ArrayList<Productos>) session.getAttribute("listaProductos");
+		ArrayList<Categoria> listaCategorias = categoriasServices.buscarCategorias();
+
 		if (listaProductos == null) {
 			listaProductos = productosServices.buscarProductos();
 
 		}
 
-		ArrayList<Categoria> listaCategorias = categoriasServices.buscarCategorias();
 		model.addAttribute("listaProductos", listaProductos);
 		model.addAttribute("listaCategorias", listaCategorias);
-	
+
 		boolean noexiste = productosServices.existeCarrito(carrito);
 		if (noexiste == true) {
 			carrito = new ArrayList<Productos>();
@@ -95,7 +94,6 @@ public class ControlerLogin {
 
 		return "menuPrincipal";
 	}
-
 
 	@GetMapping("/logout")
 	public String getStringLogout(Model model, HttpSession session) {
@@ -111,8 +109,9 @@ public class ControlerLogin {
 		return "redirect:/tienda/menuPrincipal";
 
 	}
+
 	@GetMapping("/busqueda")
-	public String postBusquedaFiltro( HttpSession session) {
+	public String postBusquedaFiltro(HttpSession session) {
 		ArrayList<Productos> productos = productosServices.buscarProductos();
 		session.setAttribute("listaProductos", productos);
 		return "redirect:/tienda/menuPrincipal";

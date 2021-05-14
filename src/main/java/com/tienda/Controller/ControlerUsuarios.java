@@ -3,9 +3,11 @@ package com.tienda.Controller;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tienda.modelo.Roles;
 import com.tienda.modelo.Usuarios;
@@ -31,9 +34,14 @@ public class ControlerUsuarios {
 	public RolesServices rolesService;
 
 	@GetMapping("/lista")
-	public String getListaUsuarios(Model model) {
-		Iterable<Usuarios> listaUsuarios = usuarioServices.buscarUsuarios();
-		model.addAttribute("listaUsuarios", listaUsuarios);
+	public String getListaUsuarios(Model model, HttpSession session,
+			@RequestParam(name = "buscar", required = false, defaultValue = "") String cadena,
+			@RequestParam(name = "valor", required = false, defaultValue = "nombre") String valor) {
+		Iterable<Usuarios> listaUsuarios;
+		
+			listaUsuarios = usuarioServices.buscarUsuarios();
+			model.addAttribute("listaUsuarios", listaUsuarios);
+		
 
 		return "usuarios/usuarios";
 	}
@@ -98,7 +106,7 @@ public class ControlerUsuarios {
 		model.addAttribute("usuario", usuario);
 		return "usuarios/altausuario";
 	}
-	
+
 	@GetMapping("/edit/usuarionuevo/{id}")
 	public String editUsuarionuevo(@PathVariable("id") long id, Model model) {
 
@@ -107,10 +115,10 @@ public class ControlerUsuarios {
 		model.addAttribute("usuario", usuario);
 		return "usuarios/usuarionuevo";
 	}
-	
+
 	@PostMapping("/edit/usuarionuevo/submit")
 	public String postEditUsuarionuevo(Model model) {
-		
+
 		return "redirect:/tienda/menuPrincipal";
 	}
 
@@ -119,11 +127,9 @@ public class ControlerUsuarios {
 		System.out.println(usuario.toString());
 		usuario.setClave(usuarioServices.encriptarClave(usuario.getClave()));
 		usuarioServices.guardarUsuario(usuario);
-	
+
 		return "redirect:/tienda/usuarios/lista";
 	}
-	
-	
 
 	@GetMapping("/del/altausuario/{id}")
 	public String borrarUsuario(Model model, @PathVariable("id") long id) {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tienda.MyLogger;
+import com.tienda.modelo.Productos;
 import com.tienda.modelo.Usuarios;
 import com.tienda.repository.UsuarioRepository;
 
@@ -54,4 +55,10 @@ public class UsuarioServices {
 			return claveEncriptada;	
 			
 	  }
+		public ArrayList<Usuarios> buscadorNombre(String cadena) {
+			ArrayList<Usuarios> listaProductos = (ArrayList<Usuarios>) usuarioRepository.findByNombreContains(cadena);
+			 logger.info("Obteniendo lista producto por nombre  "+listaProductos.toString());
+			return listaProductos;
+		}
+
 }
