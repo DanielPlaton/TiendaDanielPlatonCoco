@@ -85,7 +85,7 @@
 								<div class="col-md-8">
 									<input id="clave" name="clave" type="password"
 										placeholder="Introduce clave del usuario"
-										class="form-control input-md" th:field="*{clave}">
+										class="form-control input-md" required="" th:field="*{clave}">
 
 								</div>
 							</div>
@@ -152,8 +152,19 @@
 
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="direccion">Localidad</label>
+								<div class="col-md-8">
+									<input id="direccion" name="localidad" type="text"
+										placeholder="Introduce una localidad"
+										class="form-control input-md" th:field="*{localidad}">
+
+								</div>
+							</div>
 
 							<!-- Select Basic -->
+							<!-- 
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="localidad">Localidad</label>
 								<span class="col-md-1 col-md-offset-2 text-center"><i
@@ -165,8 +176,19 @@
 									</select>
 								</div>
 							</div>
+							 -->
 
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="direccion">Provincia</label>
+								<div class="col-md-8">
+									<input id="direccion" name="provincia" type="text"
+										placeholder="Introduce una localidad"
+										class="form-control input-md" th:field="*{provincia}">
+
+								</div>
+							</div>
 							<!-- Select Basic -->
+							<!--  
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="provincia">Provincia</label>
 								<span class="col-md-1 col-md-offset-2 text-center"><i
@@ -178,7 +200,7 @@
 									</select>
 								</div>
 							</div>
-
+-->
 							<!-- Text input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="telefono">Telefono</label>
